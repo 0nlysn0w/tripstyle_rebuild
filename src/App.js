@@ -6,6 +6,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 class App extends Component {
   render() {
@@ -17,6 +18,7 @@ class App extends Component {
 
               <Switch>
                 <Route exact path={'/'} component={HomePage} />
+                <Route path={'/products/:id'} component={ProductDetailPage} />
               </Switch>
 
             <Footer />

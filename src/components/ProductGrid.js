@@ -7,7 +7,7 @@ class ProductGrid extends Component {
     super(props);
     this.state = {
       products: [],
-      isLoaded: false,
+      isLoading: true,
       isFiltered: false
     }
   }
@@ -17,14 +17,14 @@ class ProductGrid extends Component {
       .then(res => res.json())
       .then(json => {
         this.setState({
-          isLoaded: true,
+          isLoading: false,
           products: json
         })
       });
   }
 
   render() {
-    if (!this.state.isLoaded) {
+    if (this.state.isLoading) {
       return <div>Loading...</div>;
     }
 
@@ -34,7 +34,7 @@ class ProductGrid extends Component {
           <Grid.Row columns={5} centered relaxed>
             {this.state.products.map(product => (
               <Grid.Column>
-                <Link to={'/' + product.productId}>
+                <Link to={'products/' + product.productId}>
                   <Card href='#card-example-link-card' color='teal'>
                     <Image src={product.image} />
                     <CardContent>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {  } from 'react';
 import { Menu, Container } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
 import { List } from 'semantic-ui-react';
@@ -8,7 +8,7 @@ const Footer = () => {
         <Menu borderless size='massive' color='grey' inverted>
             <Container>
                 <MenuItem>
-                    <List verticalAlign>
+                    <List verticalAlign="middle">
                         <List.Item > CUSTOMER SERVICE </List.Item>
                         <List.Item> Delivery </List.Item>
                         <List.Item> Return policy </List.Item>
@@ -17,7 +17,7 @@ const Footer = () => {
                     </List>
                 </MenuItem>
                 <MenuItem position='right'>
-                    <List verticalAlign>
+                    <List verticalAlign="middle">
                         <List.Item> THANOS CAR </List.Item>
                         <List.Item> Thanos car </List.Item>
                         <List.Item> Thanos car </List.Item>
@@ -26,7 +26,7 @@ const Footer = () => {
                     </List>
                 </MenuItem>
                 <MenuItem position='right'>
-                    <List verticalAlign>
+                    <List verticalAlign="middle">
                         <List.Item> ABOUT US </List.Item>
                         <List.Item> Login </List.Item>
                         <List.Item> Our assortment </List.Item>

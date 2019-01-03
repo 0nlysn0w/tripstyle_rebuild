@@ -5,6 +5,8 @@ import { Sidebar, SidebarPusher } from 'semantic-ui-react';
 import Header from './components/Header'
 import Footer from './components/Footer'
 
+import HomePage from './pages/HomePage'
+
 class App extends Component {
   render() {
     return (
@@ -12,6 +14,10 @@ class App extends Component {
         <Sidebar.Pushable>
           <SidebarPusher>
             <Header />
+
+              <Switch>
+                <Route exact path={'/'} component={HomePage} />
+              </Switch>
 
             <Footer />
           </SidebarPusher>

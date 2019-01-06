@@ -5,6 +5,22 @@ import worldmap from '../images/worldmap.png';
 import ProductGrid from '../components/ProductGrid';
 
 class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          products: [],
+        }
+      }
+
+    componentDidMount() {
+        fetch('https://localhost:5001/api/product/getfive')
+        .then(res => res.json())
+        .then(json => {
+          this.setState({
+            products: json
+          })
+        });
+    }
 
     render() {
         return (
@@ -21,8 +37,9 @@ class HomePage extends Component {
                 <Divider hidden />
 
                 <Divider horizontal>Recommended</Divider>
+
                 <Container>
-                    <ProductGrid />
+                    <ProductGrid columns={5} products={this.state.products} />
                 </Container>
 
                 <Divider hidden />
@@ -30,7 +47,7 @@ class HomePage extends Component {
                 <Divider horizontal>Recently viewed</Divider>
 
                 <Container>
-                    <ProductGrid />
+                    <ProductGrid columns={5} products={this.state.products} />
                 </Container>
 
                 <Divider hidden />

@@ -7,6 +7,7 @@ import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import ProductsPage from './pages/ProductsPage'
 import { history } from './helpers/'
 
 class App extends Component {
@@ -19,7 +20,8 @@ class App extends Component {
 
             <Switch>
               <Route exact path={'/'} component={HomePage} />
-              <Route name="product" path={'/products/:id'} component={ProductDetailPage} />
+              <Route exact name="productDetail" path={'/products/:id'} component={ProductDetailPage} />
+              <Route exact name="allProducts" path={'/products'} component={ProductsPage} />
               <Route name="order" path={'/order'} component={ProductDetailPage} />
             </Switch>
 

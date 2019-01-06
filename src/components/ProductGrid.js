@@ -31,7 +31,7 @@ class ProductGrid extends Component {
     return (
       <React.Fragment>
         <Grid>
-          <Grid.Row columns={5} centered relaxed>
+          <Grid.Row columns={5} centered relaxed="true">
             {this.state.products.map(product => (
               <Grid.Column key={product.productId}>
                 <Link to={'products/' + product.productId}>

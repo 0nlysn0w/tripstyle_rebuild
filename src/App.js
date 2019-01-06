@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Route, Router, Switch } from 'react-router-dom';
 import { Sidebar, SidebarPusher } from 'semantic-ui-react';
 
 import Header from './components/Header'
@@ -7,24 +7,25 @@ import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
 import ProductDetailPage from './pages/ProductDetailPage'
+import { history } from './helpers/'
 
 class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Sidebar.Pushable>
           <SidebarPusher>
             <Header />
 
-              <Switch>
-                <Route exact path={'/'} component={HomePage} />
-                <Route path={'/products/:id'} component={ProductDetailPage} />
-              </Switch>
+            <Switch>
+              <Route exact path={'/'} component={HomePage} />
+              <Route name="product" path={'/products/:id'} component={ProductDetailPage} />
+            </Switch>
 
             <Footer />
           </SidebarPusher>
         </Sidebar.Pushable>
-      </BrowserRouter>
+      </Router>
     );
   }
 }

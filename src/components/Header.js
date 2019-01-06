@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
+import SearchBar from './SearchBar'
 
 // import SearchExampleStandard from './SearchBar';
 // import ShoppingCart from './ShoppingCart';
@@ -15,7 +16,7 @@ class Header extends Component {
                     </Button>
                 </MenuItem>
                 <MenuItem position='right'>
-                    {/* <SearchExampleStandard></SearchExampleStandard> */}
+                    <SearchBar></SearchBar>
                 </MenuItem>
                 <MenuItem className="Login" position='right'>
 

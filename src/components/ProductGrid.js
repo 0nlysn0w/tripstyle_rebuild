@@ -33,9 +33,9 @@ class ProductGrid extends Component {
         <Grid>
           <Grid.Row columns={5} centered relaxed>
             {this.state.products.map(product => (
-              <Grid.Column>
+              <Grid.Column key={product.productId}>
                 <Link to={'products/' + product.productId}>
-                  <Card href='#card-example-link-card' color='teal'>
+                  <Card color='teal'>
                     <Image src={product.image} />
                     <CardContent>
                       <Card.Header>

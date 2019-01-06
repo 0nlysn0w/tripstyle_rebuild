@@ -13,7 +13,7 @@ class ShoppingCart extends Component {
 	}
 
 	handleHideClick = () => this.setState({ visible: false });
-	handleShowClick = () => this.setState({ visible: true, products: this.state.products }); 
+	handleShowClick = () => this.setState({ visible: true, products: this.state.products });
 	handleSidebarHide = () => this.setState({ visible: false });
 
 	render() {
@@ -32,10 +32,13 @@ class ShoppingCart extends Component {
 					width='wide'>
 
 					<Segment inverted color='grey' textAlign='center'>
-						<Button fluid color='green' size='huge' as={NavLink} to='/order'>
+					<NavLink to='/order' as={Button}>
+
+						<Button fluid color='green' size='huge'>
 							<Icon name='in cart' size='large' />
 							Order
               </Button>
+					</NavLink>
 					</Segment>
 
 					<Divider />

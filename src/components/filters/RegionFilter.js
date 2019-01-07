@@ -3,7 +3,6 @@ import { Form, Radio } from 'semantic-ui-react'
 
 class RegionFilter extends Component {
   state = { region: '' }
-  // handleChange = (e, { value }) => this.setState({ value })
   handleChange(value) {
     this.setState({ region: value }, () => this.props.changeRegion(this.state.region));
   }

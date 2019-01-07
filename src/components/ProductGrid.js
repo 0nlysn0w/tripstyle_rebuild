@@ -11,7 +11,7 @@ class ProductGrid extends Component {
   }
 
   render() {
-    console.log('this.props.products', this.props.products)
+    // console.log('this.props.products', this.props.products)
     if (this.props.products === undefined) {
       return <div>Loading...</div>;
     }
@@ -31,6 +31,7 @@ class ProductGrid extends Component {
 
                     <Card.Meta>{product.color}</Card.Meta>
                     <Card.Meta>{product.name}</Card.Meta>
+                    <Card.Meta>{product.category.name}</Card.Meta>
 
                     <Card.Description>{product.region}</Card.Description>
                   </CardContent>

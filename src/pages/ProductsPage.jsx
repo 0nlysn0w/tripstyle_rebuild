@@ -17,16 +17,29 @@ class ProductsPage extends Component {
 		}
 	}
 
-	changeRegion(region) {
-		this.setState({ region: region }, () => {
-			console.log('this.state.region', this.state.region)
-			this.componentDidMount();
-		})
+	// changeRegion(region) {
+	// 	this.setState({ region: region }, () => this.componentDidMount())
 
+	// }
+
+	// changeCategory(category) {
+    //     this.setState({ category: category }, () => this.componentDidMount())
+	// }
+	
+	receiveFilter(allFilters) {
+		console.log('allFilters', allFilters)
+		this.setState({
+			region: allFilters.region,
+			category: allFilters.category,
+			color: allFilters.color
+		}, () => this.componentDidMount())
 	}
 
 	componentDidMount() {
-		let url = 'https://localhost:5001/api/product/filter/?name=' + this.state.name + '&region=' + this.state.region
+		let url = 'https://localhost:5001/api/product/filter?name=' + this.state.name + 
+		'&region=' + this.state.region + 
+		'&category=' + this.state.category +
+		'&color=' + this.state.color
 		console.log('url', url)
 		fetch(url)
 			.then(res => res.json())
@@ -43,7 +56,7 @@ class ProductsPage extends Component {
 				<Grid>
 					<Grid.Column width={3}>
 						{/* Filter selection */}
-						<FilterSection changeRegion={(region) => this.changeRegion(region)} />
+						<FilterSection receiveFilter={(allFilters) => this.receiveFilter(allFilters)} />
 					</Grid.Column>
 
 					<Grid.Column width={13}>

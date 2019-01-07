@@ -7,6 +7,11 @@ class RegionFilter extends Component {
     this.setState({ region: value }, () => this.props.changeRegion(this.state.region));
   }
 
+  componentWillReceiveProps() {
+		this.setState({region: this.props.current})
+	}
+
+
   render() {
     return (
       <Form>

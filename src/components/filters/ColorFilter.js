@@ -22,6 +22,10 @@ class ColorFilter extends Component {
 		this.setState({ color: value }, () => this.props.changeColor(this.state.color));
 	}
 
+	componentWillReceiveProps() {
+		this.setState({color: this.props.current})
+	}
+
 	render() {
 		return (
 			<Form>

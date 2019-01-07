@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Divider } from 'semantic-ui-react'
+import { Form, Divider, Button } from 'semantic-ui-react'
 
 import RegionFilter from './RegionFilter';
 import CategoryFilter from './CategoryFilter'
@@ -11,10 +11,10 @@ class FilterSection extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            region: '', 
-            products: '', 
-            isFiltered: '', 
-            category: '', 
+            region: '',
+            products: '',
+            isFiltered: '',
+            category: '',
             color: ''
         }
     }
@@ -39,6 +39,16 @@ class FilterSection extends Component {
     //     this.setState({ products })
     // }
 
+    resetFilter() {
+        this.setState({
+            region: '',
+            category: '',
+            color: ''
+        }, () => this.props.receiveFilter(this.state))
+        
+
+    }
+
     render() {
         return (
 
@@ -46,17 +56,24 @@ class FilterSection extends Component {
                 {/* <FilterDropdown />
                 <Divider hidden /> */}
 
-                <ColorFilter changeColor={(color) => this.changeColor(color)} />
+                <ColorFilter current={this.state.color} changeColor={(color) => this.changeColor(color)} />
                 <Divider hidden />
 
                 {/* FOCUS ON THIS ONE ONLY */}
-                <RegionFilter changeRegion={(region) => this.changeRegion(region)} />
+                <RegionFilter current={this.state.region} changeRegion={(region) => this.changeRegion(region)} />
                 <Divider section hidden />
 
-                <CategoryFilter changeCategory={(category) => this.changeCategory(category)} />
+                <CategoryFilter current={this.state.category} changeCategory={(category) => this.changeCategory(category)} />
                 <Divider section hidden />
 
-{/* 
+                <Button basic color='teal' onClick={() => this.resetFilter()} >
+                    <Button.Content visible>Reset filter</Button.Content>
+                </Button>
+                <Divider section hidden />
+
+
+
+                {/* 
                 <Filterbutton region={this.state.region} category={this.state.category} color={this.state.color}
                     changeProducts={(products) => this.ChangeProducts(products)}
                     changeFilter={(isFiltered) => this.ChangeFilter(isFiltered)} /> */}

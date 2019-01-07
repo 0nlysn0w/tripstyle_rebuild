@@ -24,6 +24,10 @@ class CategoryFilter extends Component {
 		this.setState({ category: value }, () => this.props.changeCategory(this.state.category));
 	}
 
+	componentWillReceiveProps() {
+		this.setState({category: this.props.current})
+	}
+
 
 	render() {
 		return (

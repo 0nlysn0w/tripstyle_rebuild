@@ -2,14 +2,20 @@ import React, { Component } from 'react'
 import { Form, Radio } from 'semantic-ui-react'
 
 class RegionFilter extends Component {
-  state = { region: '' }
+  constructor(props) {
+    super(props)
+    this.state = {
+      region: ''
+    }
+  }
+
   handleChange(value) {
     this.setState({ region: value }, () => this.props.changeRegion(this.state.region));
   }
 
   componentWillReceiveProps() {
-		this.setState({region: this.props.current})
-	}
+    this.setState({ region: this.props.current })
+  }
 
 
   render() {

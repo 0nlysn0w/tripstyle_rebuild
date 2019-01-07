@@ -26,7 +26,7 @@ class ProductsPage extends Component {
 	}
 
 	componentDidMount() {
-		let url = 'https://localhost:5001/api/product/search/?name=' + this.state.name + '&region=' + this.state.region
+		let url = 'https://localhost:5001/api/product/filter/?name=' + this.state.name + '&region=' + this.state.region
 		console.log('url', url)
 		fetch(url)
 			.then(res => res.json())

@@ -6,18 +6,20 @@ class CategoryFilter extends Component {
 		super(props)
 		this.state = {
 			category: '',
-			categories: [
-				"coat",
-				"shirt",
-				"shirt",
-				"coat",
-				"skirt",
-				"dress",
-				"suit",
-				"underwear",
-				"swimsuit"
-			]
+			categories: []
 		}
+	}
+
+	componentDidMount() {
+		fetch('https://localhost:5001/api/category')
+		.then(res => res.json())
+		.then(json => {
+
+			let categoryNames = json.map(c => c.name)
+			this.setState({
+				categories: categoryNames
+			})
+		});
 	}
 
 	handleChange(value) {
@@ -27,7 +29,6 @@ class CategoryFilter extends Component {
 	componentWillReceiveProps() {
 		this.setState({ category: this.props.current })
 	}
-
 
 	render() {
 		return (

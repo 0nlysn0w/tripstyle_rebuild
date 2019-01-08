@@ -12,3 +12,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.getStartedBtn {
+  justify-content: center;
+  z-index: 100;
+  position: relative;
+  top: 200px;
+}

@@ -31,21 +31,9 @@ class OrderBy extends Component {
 				clearable 
 				selection 
 				value={this.state.orderBy !== '' ? this.state.orderBy : 'az'}
-				defaultValue={this.state.orderOptions[0].value}
 				options={this.state.orderOptions}
 				onChange={(e, {value}) => this.handleChange(value)}
 			>
-				{/* <Dropdown.Menu>
-					{this.state.orderOptions.map(option => (
-						<Dropdown.Item 
-							key={option.key}
-							text={option.text} 
-							name='orderBy'
-							value={option.value} 
-							selected={this.state.orderBy === option.value}
-							onClick={() => this.handleChange(option.value)} />
-					))}
-				</Dropdown.Menu> */}
 			</Dropdown>
 		)
 	}

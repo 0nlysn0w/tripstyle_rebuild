@@ -1,60 +1,56 @@
 import React, { Component } from 'react';
-import { Container, Image, Divider } from 'semantic-ui-react';
-// import TopNavigation from './TopNavigation';
-import worldmap from '../images/worldmap.png';
+import { Container, Image, Divider, Button, Grid } from 'semantic-ui-react';
+import { NavLink } from 'react-router-dom';
+import bike from '../images/bike-dunes.jpg';
 import ProductGrid from '../components/ProductGrid';
 
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          products: [],
-        }
-      }
+	constructor(props) {
+		super(props);
+		this.state = {
+			products: [],
+		}
+	}
 
-    componentDidMount() {
-        fetch('https://localhost:5001/api/product/getfive')
-        .then(res => res.json())
-        .then(json => {
-          this.setState({
-            products: json
-          })
-        });
-    }
+	componentDidMount() {
+		fetch('https://localhost:5001/api/product/getfive')
+			.then(res => res.json())
+			.then(json => {
+				this.setState({
+					products: json
+				})
+			});
+	}
 
-    render() {
-        return (
-            <React.Fragment>
-                
-                <Container>
+	render() {
+		return (
+			<React.Fragment>
+				<Container>
+					<Grid centered>
+						<Button aligned='true' basic className='getStartedBtn' color='red' size='massive' as={NavLink} to='/products' >
+							<Button.Content visible>Get started!</Button.Content>
+						</Button>
+					</Grid>
+				</Container>
 
-                    {/* <TopNavigation /> */}
+				<Image centered src={bike} />
+				<Divider hidden />
 
-                </Container>
+				<Divider horizontal>Recommended</Divider>
+				<Container>
+					<ProductGrid columns={5} products={this.state.products} />
+				</Container>
+				<Divider hidden />
 
-                <Divider hidden />
-                <Image src={worldmap} centered />
-                <Divider hidden />
+				<Divider horizontal>Recently viewed</Divider>
+				<Container>
+					<ProductGrid columns={5} products={this.state.products} />
+				</Container>
+				<Divider hidden />
 
-                <Divider horizontal>Recommended</Divider>
-
-                <Container>
-                    <ProductGrid columns={5} products={this.state.products} />
-                </Container>
-
-                <Divider hidden />
-
-                <Divider horizontal>Recently viewed</Divider>
-
-                <Container>
-                    <ProductGrid columns={5} products={this.state.products} />
-                </Container>
-
-                <Divider hidden />
-
-            </React.Fragment>
-        );
-    }
+			</React.Fragment>
+		);
+	}
 }
 
 export default HomePage;

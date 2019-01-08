@@ -36,7 +36,10 @@ class ColorFilter extends Component {
 				{this.state.colors.map(color => (
 
 					<Form.Field>
-						<Segment {...color.toLowerCase() !== 'white' ? 'inverted' : null} color={color.toLowerCase()}>
+						<Segment 
+							inverted={color.toLowerCase() !== 'white'}
+							color={color.toLowerCase() === 'white' ? '' : color.toLowerCase()}
+						>
 							<Radio
 								label={color}
 								name='color'

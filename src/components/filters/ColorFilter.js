@@ -23,14 +23,14 @@ class ColorFilter extends Component {
 	}
 
 	componentWillReceiveProps() {
-		this.setState({color: this.props.current})
+		this.setState({ color: this.props.current })
 	}
 
 	render() {
 		return (
 			<Form>
 				<Form.Field>
-					<b>Select the color</b>
+					<b>Select a color</b>
 				</Form.Field>
 
 				{this.state.colors.map(color => (

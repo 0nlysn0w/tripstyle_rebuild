@@ -4,8 +4,7 @@ import { Form, Divider, Button } from 'semantic-ui-react'
 import RegionFilter from './RegionFilter';
 import CategoryFilter from './CategoryFilter'
 import ColorFilter from './ColorFilter';
-// import FilterDropdown from './FilterDropdown'
-// import Filterbutton from './Filterbutton'
+import OrderBy from './OrderBy'
 
 class FilterSection extends Component {
     constructor(props) {
@@ -13,7 +12,7 @@ class FilterSection extends Component {
         this.state = {
             region: '',
             products: '',
-            isFiltered: '',
+            orderBy: '',
             category: '',
             color: ''
         }
@@ -27,23 +26,20 @@ class FilterSection extends Component {
         this.setState({ category }, () => this.props.receiveFilter(this.state))
     }
 
-    // ChangeFiler(isFiltered) {
-    //     this.setState({ isFiltered })
-    // }
-
     changeRegion(region) {
         this.setState({ region }, () => this.props.receiveFilter(this.state))
     }
-
-    // ChangeProducts(products) {
-    //     this.setState({ products })
-    // }
+    changeOrderBy(orderBy) {
+        console.log('huts')
+        this.setState({ orderBy }, () => this.props.receiveFilter(this.state))
+    }
 
     resetFilter() {
         this.setState({
             region: '',
             category: '',
-            color: ''
+            color: '',
+            orderBy: 'az'
         }, () => this.props.receiveFilter(this.state))
         
 
@@ -53,13 +49,12 @@ class FilterSection extends Component {
         return (
 
             <Form>
-                {/* <FilterDropdown />
-                <Divider hidden /> */}
+                <OrderBy current={this.state.orderBy} changeOrderBy={(orderBy) => this.changeOrderBy(orderBy)} />
+                <Divider hidden />
 
                 <ColorFilter current={this.state.color} changeColor={(color) => this.changeColor(color)} />
                 <Divider hidden />
 
-                {/* FOCUS ON THIS ONE ONLY */}
                 <RegionFilter current={this.state.region} changeRegion={(region) => this.changeRegion(region)} />
                 <Divider section hidden />
 
@@ -70,13 +65,6 @@ class FilterSection extends Component {
                     <Button.Content visible>Reset filter</Button.Content>
                 </Button>
                 <Divider section hidden />
-
-
-
-                {/* 
-                <Filterbutton region={this.state.region} category={this.state.category} color={this.state.color}
-                    changeProducts={(products) => this.ChangeProducts(products)}
-                    changeFilter={(isFiltered) => this.ChangeFilter(isFiltered)} /> */}
             </Form>
 
         )

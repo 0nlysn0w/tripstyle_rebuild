@@ -13,7 +13,7 @@ class ProductsPage extends Component {
 			region: '',
 			color: '',
 			category: '',
-			orderBy: '',
+			orderBy: 'az',
 		}
 	}
 
@@ -31,7 +31,8 @@ class ProductsPage extends Component {
 		this.setState({
 			region: allFilters.region,
 			category: allFilters.category,
-			color: allFilters.color
+			color: allFilters.color,
+			orderBy: allFilters.orderBy
 		}, () => this.componentDidMount())
 	}
 
@@ -39,7 +40,8 @@ class ProductsPage extends Component {
 		let url = 'https://localhost:5001/api/product/filter?name=' + this.state.name + 
 		'&region=' + this.state.region + 
 		'&category=' + this.state.category +
-		'&color=' + this.state.color
+		'&color=' + this.state.color +
+		'&orderBy=' + this.state.orderBy
 		console.log('url', url)
 		fetch(url)
 			.then(res => res.json())

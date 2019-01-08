@@ -5,7 +5,15 @@ class RegionFilter extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      region: ''
+      region: '',
+      regions: [
+        "Africa",
+        "Asia",
+        "Europe",
+        "North-America",
+        "South-America",
+        "Oceania"
+      ]
     }
   }
 
@@ -17,67 +25,24 @@ class RegionFilter extends Component {
     this.setState({ region: this.props.current })
   }
 
-
   render() {
     return (
       <Form>
         <Form.Field>
-          <b>Select the region</b>
+          <b>Select a region</b>
         </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Africa'
-            name='region'
-            value='Africa'
-            checked={this.state.region === 'Africa'}
-            onChange={() => this.handleChange('Africa')}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Asia'
-            name='region'
-            value='Asia'
-            checked={this.state.region === 'Asia'}
-            onChange={() => this.handleChange('Asia')}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Europe'
-            name='region'
-            value='Europe'
-            checked={this.state.region === 'Europe'}
-            onChange={() => this.handleChange('Europe')}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='North America'
-            name='region'
-            value='North America'
-            checked={this.state.region === 'North America'}
-            onChange={() => this.handleChange('North America')}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='South America'
-            name='region'
-            value='South America'
-            checked={this.state.region === 'South America'}
-            onChange={() => this.handleChange('South America')}
-          />
-        </Form.Field>
-        <Form.Field>
-          <Radio
-            label='Oceania'
-            name='region'
-            value='Ocania'
-            checked={this.state.region === 'Ocania'}
-            onChange={() => this.handleChange('Ocania')}
-          />
-        </Form.Field>
+
+        {this.state.regions.map(region => (
+          <Form.Field>
+            <Radio
+              label={region}
+              name='region'
+              value={region}
+              checked={this.state.region === region}
+              onChange={() => this.handleChange(region)}
+            />
+          </Form.Field>
+        ))}
       </Form>
     )
   }

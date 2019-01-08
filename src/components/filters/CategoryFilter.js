@@ -25,7 +25,7 @@ class CategoryFilter extends Component {
 	}
 
 	componentWillReceiveProps() {
-		this.setState({category: this.props.current})
+		this.setState({ category: this.props.current })
 	}
 
 
@@ -33,7 +33,7 @@ class CategoryFilter extends Component {
 		return (
 			<Form>
 				<Form.Field>
-					<b>Select the type</b>
+					<b>Select a category</b>
 				</Form.Field>
 
 				{this.state.categories.map(category => (

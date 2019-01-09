@@ -11,6 +11,18 @@ class ProductDetailPage extends Component {
 	}
 
 	componentDidMount() {
+		this.fetchProduct()
+	}
+
+	componentDidUpdate() {
+		if (this.props.match.params.id !== this.state.selectedId) {
+			this.fetchProduct()
+		}
+
+	}
+
+	fetchProduct() {
+		this.setState({selectedId: this.props.match.params.id})
 		console.log('this.props.match.params.id', this.props.match.params.id)
 		let url = 'https://localhost:5001/api/product/' + this.props.match.params.id
 		console.log('url', url)

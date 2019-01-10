@@ -16,13 +16,10 @@ export function authentication(state = initialState, action) {
     case userConstants.LOGIN_SUCCESS:
       return {
         loggedIn: true,
-        user: action.user,
-        isOpen: false
+        user: action.user
       };
     case userConstants.LOGIN_FAILURE:
-      return {
-        isOpen: true
-      };
+      return {};
     case userConstants.LOGOUT:
       return {};
     default:

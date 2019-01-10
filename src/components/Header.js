@@ -34,20 +34,19 @@ class Header extends Component {
                 <MenuItem position='right'>
                     <SearchBar></SearchBar>
                 </MenuItem>
-                {this.props.user ? 
-                <MenuItem>
-                    <Button onClick={this.logout}>Logout</Button>
-                </MenuItem> 
-                : <MenuItem className="Login" position='right'>
 
-                        <LoginForm />
+                <MenuItem className="Login" position='right'>
+                    {this.props.user ?
+                    <React.Fragment>
 
-                    </MenuItem>}
+                        <Button as={NavLink} to='/Login'>Logout</Button>
 
-
-
-
-
+                        <Button color='green' as={NavLink} to='/profile'>{this.props.user.firstname}</Button>
+                    </React.Fragment>
+                        :
+                        <Button color='blue' as={NavLink} to='/login'>Login</Button>
+                    }
+                </MenuItem>
 
                 <MenuItem>
                     <ShoppingCart />

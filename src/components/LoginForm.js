@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { Button, Form, Popup } from 'semantic-ui-react'
+import { Button, Form, Popup, Container } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
-import { userActions } from '../redux/actions';
-
+import { userActions, alertActions } from '../redux/actions';
+import { history } from '../helpers/'
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -13,6 +13,14 @@ class LoginForm extends Component {
 			submitted: false,
 			isOpen: false
 		};
+
+		const { dispatch } = this.props
+		history.listen((location, action) => {
+			dispatch(alertActions.clear())
+		})
+
+		this.props.dispatch(userActions.logout());
+
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
@@ -22,35 +30,42 @@ class LoginForm extends Component {
 		this.setState({ [name]: value });
 	}
 
-    handleSubmit(e) {
+	handleSubmit(e) {
 		console.log(this.state);
-        e.preventDefault();
+		e.preventDefault();
 
-        this.setState({ submitted: true });
-        const { email, password } = this.state;
-        const { dispatch } = this.props;
-        if (email && password) {
-		   let v = dispatch(userActions.login(email, password));
-		   console.log(v)
-        }
-	}
-	
-	handleOpen() {
-		this.setState({isOpen: true})
+		this.setState({ submitted: true });
+		const { email, password } = this.state;
+		const { dispatch } = this.props;
+		if (email && password) {
+			let v = dispatch(userActions.login(email, password));
+			console.log(v)
+		}
 	}
 
 	render() {
-		const { loggingIn, isOpen } = this.props;
+		const { loggingIn } = this.props;
+		const { email, password, submitted } = this.state;
 		return (
-			<Popup wide trigger={<Button icon='user' color='blue' circular onClick={this.handleOpen.bind(this)} />} open={isOpen} on='click'>
-				{<Form onSubmit={this.handleSubmit}>
+			<Container>
+				{alert.message &&
+					<div className={`alert ${alert.type}`}>{alert.message}</div>
+				}
+
+				<Form onSubmit={this.handleSubmit}>
 					<Form.Field>
 						<label>Email</label>
-						<input name="email" type="text" placeholder='Email'  onChange={this.handleChange} />
+						<input name="email" type="text" placeholder='Email' onChange={this.handleChange} />
+						{submitted && !email &&
+                            <div className="help-block">Email is required</div>
+                        }
 					</Form.Field>
 					<Form.Field>
 						<label>Password</label>
-						<input name="password" type="password" placeholder='Password'  onChange={this.handleChange} />
+						<input name="password" type="password" placeholder='Password' onChange={this.handleChange} />
+						{submitted && !password &&
+                            <div className="help-block">Password is required</div>
+                        }
 					</Form.Field>
 
 					<Button positive fluid type="submit">Login</Button>
@@ -59,16 +74,16 @@ class LoginForm extends Component {
 					}
 
 					<NavLink to='/register'>Don't have an account yet? register here.</NavLink>
-				</Form>}
-			</Popup>)
+				</Form>
+			</Container>
+		)
 	}
 }
 
 function mapStateToProps(state) {
-	const { loggedIn, isOpen } = state.authentication;
+	const { loggedIn } = state.authentication;
 	return {
-		loggedIn,
-		isOpen
+		loggedIn
 	}
 }
 

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button } from 'semantic-ui-react';
+import * as cookie from '../helpers/cookie.js'
 
 class ProductDetailPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			product: null,
+			product: '',
 			isLoading: true
 		}
 	}
@@ -18,29 +19,39 @@ class ProductDetailPage extends Component {
 		if (this.props.match.params.id !== this.state.selectedId) {
 			this.fetchProduct()
 		}
-
 	}
 
 	fetchProduct() {
-		this.setState({selectedId: this.props.match.params.id})
+		this.setState({ selectedId: this.props.match.params.id })
 		console.log('this.props.match.params.id', this.props.match.params.id)
 		let url = 'https://localhost:5001/api/product/' + this.props.match.params.id
 		console.log('url', url)
 		fetch(url)
-			.then(res => res.json())
-			.then(json => {
-				this.setState({
-					isLoading: false,
-					product: json
-				})
-				console.log('this.state.product', this.state.product)
+		.then(res => res.json())
+		.then(json => {
+			this.setState({
+				isLoading: false,
+				product: json,
+				productId: json.productId
 			})
+			console.log('this.state', this.state)
+		})
 	}
-
+	
+	handleChange() {
+		//cookie.set('ShoppingCart', 'huts')
+		let c = cookie.get('ShoppingCart') || "[]";
+		console.log('c', c)
+		let cart = JSON.parse(c)
+		cart.push(this.state.product)
+		cookie.set('ShoppingCart', JSON.stringify(cart))
+		console.log('cart', cart)
+	}
+	
 	render() {
 		if (this.state.isLoading) {
-      return <div>Loading...</div>;
-    }
+			return <div>Loading...</div>;
+		}
 		return (
 			<React.Fragment>
 				<Container>
@@ -68,7 +79,7 @@ class ProductDetailPage extends Component {
 										<Header size='huge'> {this.state.product.size} </Header>
 									</Container>
 									<Divider hidden />
-									<Button onClick={this.handleChange} color='green' size='massive' icon='shopping cart' fluid>
+									<Button onClick={this.handleChange.bind(this)} color='green' size='massive' icon='shopping cart' fluid>
 									</Button>
 								</Container>
 							</GridColumn>
@@ -79,12 +90,12 @@ class ProductDetailPage extends Component {
 
 				<Divider horizontal>Product information</Divider>
 				<Container textAlign='center'>
-					<Container> Name: {this.state.product.name}</Container>
+					<Container>Name: {this.state.product.name}</Container>
 					<Container>Fabric: {this.state.product.make}</Container>
-					<Container> Color: {this.state.product.color}</Container>
-					<Container> Region: {this.state.product.region}</Container>
+					<Container>Color: {this.state.product.color}</Container>
+					<Container>Region: {this.state.product.region}</Container>
 					<Container>Season: {this.state.product.season}</Container>
-					<Container> Category: {this.state.product.category.name}</Container>
+					<Container>Category: {this.state.product.category.name}</Container>
 				</Container>
 
 			</React.Fragment>

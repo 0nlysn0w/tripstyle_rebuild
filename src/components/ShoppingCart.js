@@ -32,13 +32,13 @@ class ShoppingCart extends Component {
 					width='wide'>
 
 					<Segment inverted color='grey' textAlign='center'>
-					<NavLink to='/order' as={Button}>
+						<NavLink to='/order'>
 
-						<Button fluid color='green' size='huge'>
-							<Icon name='in cart' size='large' />
-							Order
-              </Button>
-					</NavLink>
+							<Button fluid color='green' size='huge'>
+								<Icon name='in cart' size='large' />
+								Order
+              				</Button>
+						</NavLink>
 					</Segment>
 
 					<Divider />

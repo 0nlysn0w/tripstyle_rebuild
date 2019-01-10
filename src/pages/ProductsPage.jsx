@@ -16,15 +16,6 @@ class ProductsPage extends Component {
 			orderBy: 'az',
 		}
 	}
-
-	// changeRegion(region) {
-	// 	this.setState({ region: region }, () => this.componentDidMount())
-
-	// }
-
-	// changeCategory(category) {
-    //     this.setState({ category: category }, () => this.componentDidMount())
-	// }
 	
 	receiveFilter(allFilters) {
 		console.log('allFilters', allFilters)

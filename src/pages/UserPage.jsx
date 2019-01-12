@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Grid, Form, Divider } from 'semantic-ui-react'
+import UserPurchases from '../components/user/UserPurchases'
 
 class UserPage extends Component {
 	constructor(props) {
@@ -7,17 +8,21 @@ class UserPage extends Component {
 		this.state = {
 			user: [],
 			userId: '',
-			isLoaded: false
+			isLoaded: false,
+			purchases: []
 		}
 	}
 
 	componentDidMount() {
-        let user = JSON.parse(localStorage.getItem("user"));
+		let user = JSON.parse(localStorage.getItem("user"));
 		console.log('user', user)
 
 		this.setState({
 			userId: user.userId
-		}, () => this.fetchUser(this.state.userId))
+		}, () => {
+			this.fetchUser(this.state.userId)
+			this.fetchPurchases(this.state.userId)
+		})
 	}
 
 	fetchUser(userId) {
@@ -35,6 +40,18 @@ class UserPage extends Component {
 					user: json
 				})
 			});
+	}
+
+	fetchPurchases(userId) {
+		fetch('https://localhost:5001/api/user/stats/' + userId)
+			.then(res => res.json())
+			.then(json => {
+				this.setState({
+					isLoaded: true,
+					purchases: json
+				}, () => console.log(this.state.purchases))
+			});
+
 	}
 
 	render() {
@@ -59,17 +76,20 @@ class UserPage extends Component {
 										<Form.Input label='Address:' placeholder={user.street} readOnly />
 										<Form.Input label='City:' placeholder={user.city} readOnly />
 										<Form.Input label='Country:' placeholder={user.country} readOnly />
-
-										{/* <Form.Checkbox label='I agree to take part in the "human centipide project"' /> */}
 									</Container>
 									<Divider hidden fitted />
 								</Form>
 							</Container>
 						</Grid.Column>
 
-					</Grid>
 
-					<Divider horizontal>  My orders </Divider>
+					</Grid>
+					<Grid centered columns={2}>
+						<Grid.Column>
+								<Divider horizontal>  My orders </Divider>
+								<UserPurchases purchases={this.state.purchases} />
+						</Grid.Column>
+					</Grid>
 
 				</div>
 			);

@@ -17,9 +17,11 @@ function login(username, password) {
             .then(
                 user => { 
                     dispatch(success(user));
+                    console.log('actions login then user')
                     history.push('/');
                 },
                 error => {
+                    console.log('action login then error')
                     dispatch(failure(error));
                     dispatch(alertActions.error(error));
                 }

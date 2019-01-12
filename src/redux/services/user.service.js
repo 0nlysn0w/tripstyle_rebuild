@@ -19,7 +19,7 @@ function login(email, password) {
 
             return user;
         })
-        .catch(error => console.log('msg', error));
+        // .catch(error => console.log('msg', error));
 }
 
 function logout() {

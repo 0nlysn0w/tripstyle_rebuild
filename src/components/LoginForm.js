@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { userActions, alertActions } from '../redux/actions';
 import { history } from '../helpers/'
+
 class LoginForm extends Component {
 	constructor(props) {
 		super(props);
@@ -43,9 +44,16 @@ class LoginForm extends Component {
 		}
 	}
 
+	componentWillReceiveProps() {
+		const { alert } = this.props;
+		console.log('alert', alert.message)
+	}
+
 	render() {
-		const { loggingIn } = this.props;
+		const { alert, loggingIn } = this.props;
 		const { email, password, submitted } = this.state;
+		console.log('alert', alert.message)
+
 		return (
 			<Container>
 				{alert.message &&
@@ -83,7 +91,8 @@ class LoginForm extends Component {
 function mapStateToProps(state) {
 	const { loggedIn } = state.authentication;
 	return {
-		loggedIn
+		loggedIn,
+		alert
 	}
 }
 

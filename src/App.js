@@ -6,9 +6,11 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 
 import HomePage from './pages/HomePage'
+import UserPage from './pages/UserPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ProductsPage from './pages/ProductsPage'
 import LoginForm from './components/LoginForm'
+
 import { history } from './helpers/'
 
 class App extends Component {
@@ -25,6 +27,7 @@ class App extends Component {
               <Route exact name="allProducts" path={'/products'} component={ProductsPage} />
               <Route name="order" path={'/order'} component={ProductDetailPage} />
               <Route name="login" path={'/login'} component={LoginForm} />
+              <Route name='user' path={'/user'} component={UserPage} />
             </Switch>
 
             <Footer />

@@ -41,7 +41,7 @@ class Header extends Component {
 
                         <Button as={NavLink} to='/Login'>Logout</Button>
 
-                        <Button color='green' as={NavLink} to='/profile'>{this.props.user.firstname}</Button>
+                        <Button color='green' as={NavLink} to='/user'>{this.props.user.firstname}</Button>
                     </React.Fragment>
                         :
                         <Button color='blue' as={NavLink} to='/login'>Login</Button>

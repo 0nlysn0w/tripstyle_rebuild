@@ -12,13 +12,16 @@ class UserPage extends Component {
 	}
 
 	componentDidMount() {
-		let userId = localStorage.getItem('userId')
+        let user = JSON.parse(localStorage.getItem("user"));
+		console.log('user', user)
+
 		this.setState({
-			userId: userId
+			userId: user.userId
 		}, () => this.fetchUser(this.state.userId))
 	}
 
 	fetchUser(userId) {
+
 		if (userId === null) {
 			return
 		}

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Menu, MenuItem, Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar'
-import LoginForm from './LoginForm'
 import ShoppingCart from './ShoppingCart'
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions'

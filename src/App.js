@@ -10,6 +10,7 @@ import UserPage from './pages/UserPage'
 import ProductDetailPage from './pages/ProductDetailPage'
 import ProductsPage from './pages/ProductsPage'
 import LoginForm from './components/LoginForm'
+import OrderPage from './pages/OrderPage'
 import RegistrationPage from './pages/RegistrationPage'
 import Registered from './pages/Registered'
 import LoginInfo from './pages/footerpages/LoginInfo';
@@ -31,7 +32,7 @@ class App extends Component {
               <Route exact path={'/'} component={HomePage} />
               <Route exact name="productDetail" path={'/products/:id'} component={ProductDetailPage} />
               <Route exact name="allProducts" path={'/products'} component={ProductsPage} />
-              <Route name="order" path={'/order'} component={ProductDetailPage} />
+              <Route name="order" path={'/order'} component={OrderPage} />
               <Route name="login" path={'/login'} component={LoginForm} />
               <Route name='user' path={'/user'} component={UserPage} />
               <Route name='register' path={'/register'} component={RegistrationPage} />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import TopHeader from '../User/AdminTopHeader';
+import TopHeader from './AdminTopHeader';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button, Icon } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import Footer from '../Footer';

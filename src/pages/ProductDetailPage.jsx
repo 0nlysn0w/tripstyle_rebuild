@@ -35,6 +35,9 @@ class ProductDetailPage extends Component {
 	}
 
 	checkFavorite() {
+		if (this.props.user === undefined) {
+			return
+		}
 		let url = 'https://localhost:5001/api/favorite/check?productId=' + this.props.match.params.id + '&userId=' + this.props.user.userId
 		console.log(url)
 		fetch(url)
@@ -125,8 +128,12 @@ class ProductDetailPage extends Component {
 									<Button onClick={this.handleAddToCart.bind(this)} color='green' size='massive' icon='shopping cart' fluid disabled={!OutOfStock} />
 									<Header hidden={OutOfStock}>
 										Out of Stock
-										</Header>
-									<Button onClick={() => this.handleFavorite(this.state.product.productId)} disabled={this.state.isFavorite} icon='heart' size='big' color='red'></Button>
+									</Header>
+									{this.props.user ?
+										<Button onClick={() => this.handleFavorite(this.state.product.productId)} disabled={this.state.isFavorite} icon='heart' size='big' color='red' />
+									:
+										null	
+									}
 								</Container>
 							</GridColumn>
 						</GridRow>

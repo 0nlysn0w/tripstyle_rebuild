@@ -52,6 +52,10 @@ class ProductDetailPage extends Component {
 		if (this.state.isLoading) {
 			return <div>Loading...</div>;
 		}
+		var OutOfStock = false
+		if (this.state.product.stock) {
+			OutOfStock = true
+		}
 		return (
 			<React.Fragment>
 				<Container>
@@ -79,8 +83,11 @@ class ProductDetailPage extends Component {
 										<Header size='huge'> {this.state.product.size} </Header>
 									</Container>
 									<Divider hidden />
-									<Button onClick={this.handleChange.bind(this)} color='green' size='massive' icon='shopping cart' fluid>
+									<Button onClick={this.handleChange.bind(this)} color='green' size='massive' icon='shopping cart' fluid disabled={!OutOfStock}>
 									</Button>
+										<Header hidden={OutOfStock}>
+											Out of Stock
+										</Header>
 								</Container>
 							</GridColumn>
 						</GridRow>

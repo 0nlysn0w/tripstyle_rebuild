@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, Container, Grid, Form, Divider } from 'semantic-ui-react'
+import { history } from '../helpers';
 
 class RegistrationPage extends Component {
     constructor (props) {
@@ -18,8 +19,7 @@ class RegistrationPage extends Component {
         PostalCode: '',
         Street: '',
         City: '',
-        Country: '',
-
+        Country: ''
       }
     }
     
@@ -46,19 +46,21 @@ class RegistrationPage extends Component {
             Phonenumber: this.state.Phonenumber,
             Password: this.state.Password,
             Street: this.state.Street,
+            PostalCode: this.state.PostalCode,
             City: this.state.City,
             Country: this.state.Country
           })
         })
+        history.push('/registered')
     }
         render() {
             const {Firstname, Lastname, Gender, Email, Phonenumber, Password, Confirm_password, Street, PostalCode, City, Country} = this.state
 
             var password_confirmed = false
-            if (Password && Firstname && Gender && Lastname && Email && Street && City && Country && (Password === Confirm_password)) {
+            if (Password && Firstname && Gender && Lastname && Email && Street && PostalCode && City && Country && (Password === Confirm_password)) {
                 password_confirmed = true
             }
-            
+
             return (
                 <div>
                     <Grid centered columns={2}>
@@ -73,8 +75,8 @@ class RegistrationPage extends Component {
                                         <Form.Input label='Email address' placeholder='Email address' name='Email' value={Email} onChange= {this.handleChange} required />
                                         <Form.Input label='Phone number' placeholder='Phone number' name='Phonenumber' value={Phonenumber} onChange= {this.handleChange} />
                                         <Form.Group unstackable widths={2}>
-                                            <Form.Input label='Password' placeholder='Password' name='Password' value={Password} onChange= {this.handleChange} required/>
-                                            <Form.Input label='Confirm password' placeholder='Confirm Password' name='Confirm_password' value={Confirm_password} onChange= {this.handleChange} required/>
+                                            <Form.Input label='Password' placeholder='Password' name='Password' type='password' value={Password} onChange= {this.handleChange} required/>
+                                            <Form.Input label='Confirm password' placeholder='Confirm Password' type='password' name='Confirm_password' value={Confirm_password} onChange= {this.handleChange} required/>
                                         </Form.Group>
                                         <Form.Input label='Address' placeholder='Address' name='Street' value={Street} onChange= {this.handleChange} required/>
                                         <Form.Group unstackable widths={2}>

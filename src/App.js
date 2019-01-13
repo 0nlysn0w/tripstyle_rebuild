@@ -11,6 +11,8 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import ProductsPage from './pages/ProductsPage'
 import LoginForm from './components/LoginForm'
 import RegistrationPage from './pages/RegistrationPage'
+import Registered from './pages/Registered'
+
 
 import { history } from './helpers/'
 
@@ -30,6 +32,7 @@ class App extends Component {
               <Route name="login" path={'/login'} component={LoginForm} />
               <Route name='user' path={'/user'} component={UserPage} />
               <Route name='register' path={'/register'} component={RegistrationPage} />
+              <Route name='registered' path={'/registered'} component={Registered} />
             </Switch>
 
             <Footer />

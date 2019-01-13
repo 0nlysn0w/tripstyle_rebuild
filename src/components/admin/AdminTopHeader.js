@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Sidebar } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
-import SearchExampleStandard from '../SearchBar';
+import SearchBarAdmin from './SearchbarAdmin';
 import { Button } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 
@@ -37,12 +37,12 @@ export default class TopHeader extends Component {
                 </Button>
             </MenuItem>
             <MenuItem>
-                <Button basic compact secondary as={NavLink} to='/admin/delete'>
+                <Button basic compact secondary as={NavLink} to='/admin/stat'>
                     <h1>statistics WebShop</h1>
                 </Button>
             </MenuItem>
             <MenuItem position='right'>
-                <SearchExampleStandard></SearchExampleStandard>
+                <SearchBarAdmin></SearchBarAdmin>
             </MenuItem>
             <MenuItem>
             </MenuItem>

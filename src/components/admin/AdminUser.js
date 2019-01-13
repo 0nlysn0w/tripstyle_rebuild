@@ -68,7 +68,7 @@ class AdminUser extends Component {
                              <Header size='huge'>{this.state.user_email}</Header>
                              <Divider hidden/>
                              <Divider hidden />
-                             <Button onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit Changes
+                             <Button onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit
                              </Button>
                          </Container>
                      </GridColumn>

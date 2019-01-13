@@ -20,6 +20,7 @@ import AdminUser from './components/admin/AdminUser'
 import AdminUserPage from './components/admin/AdminUserPage'
 import CreateProduct from './components/admin/CreateProduct';
 import DeleteProduct from './components/admin/DeleteProduct';
+import Statistics from './components/admin/statistics/Statistics';
 class App extends Component {
   render() {
     return (
@@ -41,6 +42,7 @@ class App extends Component {
               <Route exact path={'/admin/userid/:userid'} component={AdminUser}/>
               <Route path={'/admin/create'}component={CreateProduct}/>
               <Route path={'/admin/delete'}component={DeleteProduct}/>
+              <Route path={'/admin/stat'}component={Statistics}/>
             </Switch>
 
             <Footer />

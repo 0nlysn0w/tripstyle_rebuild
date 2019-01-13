@@ -1,38 +1,39 @@
-import React, {  } from 'react';
-import { Menu, Container } from 'semantic-ui-react';
+import React, { } from 'react';
+import { Menu, Container, Header, Grid, GridRow, Divider } from 'semantic-ui-react';
 import { MenuItem } from 'semantic-ui-react';
 import { List } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <Menu borderless size='massive' color='grey' inverted>
             <Container>
-                <MenuItem>
-                    <List verticalAlign="middle">
-                        <List.Item > CUSTOMER SERVICE </List.Item>
-                        <List.Item> Delivery </List.Item>
-                        <List.Item> Return policy </List.Item>
-                        <List.Item> Payment </List.Item>
-                        <List.Item> Ordering </List.Item>
-                    </List>
-                </MenuItem>
+                <Grid textAlign='center'>
+                    <Divider hidden />
+                    <GridRow textAlign='center'>
+                        <Header color='inverted' textAlign='center'>ABOUT US</Header>
+                    </GridRow>
+                    <GridRow textAlign='center'>
+                        <MenuItem>
+                            <List>
+                                <List.Item as={Link} to='/logininfo'> Login </List.Item>
+                                <List.Item as={Link} to='/ourassortmentinfo'> Our assortment </List.Item>
+                                <List.Item> Payment </List.Item>
+                            </List>
+                        </MenuItem>
+                        <MenuItem>
+                            <List>
+                                <List.Item> Ordering </List.Item>
+                                <List.Item as={Link} to='/projectinfo'> Project </List.Item>
+                                <List.Item as={Link} to='/privacypolicy'> Privacy Policy </List.Item>
+                            </List>
+                        </MenuItem>
+                    </GridRow>
+                </Grid>
                 <MenuItem position='right'>
-                    <List verticalAlign="middle">
-                        <List.Item> THANOS CAR </List.Item>
-                        <List.Item> Thanos car </List.Item>
-                        <List.Item> Thanos car </List.Item>
-                        <List.Item> Thanos car </List.Item>
-                        <List.Item> Thanos car </List.Item>
-                    </List>
-                </MenuItem>
-                <MenuItem position='right'>
-                    <List verticalAlign="middle">
-                        <List.Item> ABOUT US </List.Item>
-                        <List.Item> Login </List.Item>
-                        <List.Item> Our assortment </List.Item>
-                        <List.Item> News </List.Item>
-                        <List.Item> Project </List.Item>
-                    </List>
+                    <div>
+                        © 2018 - 2019 - Projectgroup TripStyle
+                            </div>
                 </MenuItem>
             </Container>
         </Menu>

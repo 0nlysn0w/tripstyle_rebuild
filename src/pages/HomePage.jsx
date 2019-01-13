@@ -42,12 +42,6 @@ class HomePage extends Component {
 				</Container>
 				<Divider hidden />
 
-				<Divider horizontal>Recently viewed</Divider>
-				<Container>
-					<ProductGrid columns={5} products={this.state.products} />
-				</Container>
-				<Divider hidden />
-
 			</React.Fragment>
 		);
 	}

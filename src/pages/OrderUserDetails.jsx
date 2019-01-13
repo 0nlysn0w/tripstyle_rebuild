@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Radio, Segment, Step, Icon, Form, Button, Grid, Divider, Container, Checkbox } from 'semantic-ui-react';
+import OrderPage from './OrderPage';
 // import TopHeader from './components/Header';
 // import Footer from './components/Footer';  
 
@@ -12,6 +13,10 @@ class OrderUserDetails extends Component {
 
     render() {
         const { values } = this.props;
+        // var next_page = false
+        //     if (this.props.firstname && this.props.lastname && this.props.email && this.props.street && this.props.PostalCode && this.props.City && this.props.Country) {
+        //         next_page = true
+        //     }
         console.log('values', values)
         return (
             <div>
@@ -116,7 +121,8 @@ class OrderUserDetails extends Component {
                                                 defaultValue={values.country}
                                             />
                                         </Form.Field>
-                                        <Button type='submit' onClick={this.saveAndContinue}>Save And Continue </Button>
+                                        <Button type='submit' onClick={this.saveAndContinue}>Save and continue </Button>
+                                        {/* disabled={!next_page} */}
                                     </Container>
                                 </Form>
                             </Segment>

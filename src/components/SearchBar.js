@@ -21,7 +21,6 @@ class SearchBar extends Component {
 	}
 
 	handleResultSelect = (e, { result }) => {
-		// Does not rerender page
 		history.push('/products/' + result.key);
 		this.resetComponent()
 	}

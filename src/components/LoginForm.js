@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Popup, Container } from 'semantic-ui-react'
+import { Button, Form, Container } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { userActions, alertActions } from '../redux/actions';

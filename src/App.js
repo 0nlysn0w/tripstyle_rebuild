@@ -14,6 +14,10 @@ import RegistrationPage from './pages/RegistrationPage'
 
 import { history } from './helpers/'
 
+import AdminHeader from './components/admin/AdminHeader'
+import AdminProductPage from './components/admin/AdminProductPage'
+import AdminUser from './components/admin/AdminUser'
+import AdminUserPage from './components/admin/AdminUserPage'
 class App extends Component {
   render() {
     return (
@@ -30,6 +34,10 @@ class App extends Component {
               <Route name="login" path={'/login'} component={LoginForm} />
               <Route name='user' path={'/user'} component={UserPage} />
               <Route name='register' path={'/register'} component={RegistrationPage} />
+              <Route path={'/admin/admin'} component={AdminHeader}/>
+              <Route path={'/admin/user'} component={AdminUserPage}/>
+              <Route exact path={'/admin/product/:productid'} component={AdminProductPage}/>
+              <Route exact path={'/admin/userid/:userid'} component={AdminUser}/>
             </Switch>
 
             <Footer />

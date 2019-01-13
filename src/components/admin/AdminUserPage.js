@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import TopHeader from './AdminTopHeader';
 import { Container, Menu, MenuItem, Button, Item,  } from 'semantic-ui-react';
 import Footer from '../Footer';
+
 import { Grid, Image, Card, CardContent, Icon, Divider } from 'semantic-ui-react';
+import { connect} from 'react-redux';
 import { Link } from 'react-router-dom';
  
 export default class AdminUserPage extends Component {

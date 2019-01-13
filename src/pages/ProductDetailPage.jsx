@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button } from 'semantic-ui-react';
 import * as cookie from '../helpers/cookie.js'
+import TopHeader from '../components/Header';
 
 class ProductDetailPage extends Component {
 	constructor(props) {
@@ -54,6 +55,7 @@ class ProductDetailPage extends Component {
 		}
 		return (
 			<React.Fragment>
+				<TopHeader/>
 				<Container>
 					<Grid>
 						<GridRow>

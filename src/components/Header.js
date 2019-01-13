@@ -7,7 +7,7 @@ import ShoppingCart from './ShoppingCart'
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions'
 
-class Header extends Component {
+class TopHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -62,4 +62,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(TopHeader);

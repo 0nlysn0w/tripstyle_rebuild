@@ -3,6 +3,7 @@ import { Container, Image, Divider, Button, Grid } from 'semantic-ui-react';
 import { NavLink } from 'react-router-dom';
 import bike from '../images/bike-dunes.jpg';
 import ProductGrid from '../components/ProductGrid';
+import TopHeader from '../components/Header';
 
 class HomePage extends Component {
 	constructor(props) {
@@ -24,7 +25,9 @@ class HomePage extends Component {
 
 	render() {
 		return (
+			
 			<React.Fragment>
+				<TopHeader />
 				<Container>
 					<Grid centered>
 						<Button aligned='true' basic className='getStartedBtn' color='red' size='massive' as={NavLink} to='/products' >

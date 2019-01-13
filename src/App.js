@@ -26,8 +26,7 @@ class App extends Component {
       <Router history={history}>
         <Sidebar.Pushable>
           <SidebarPusher>
-            <Header />
-
+            
             <Switch>
               <Route exact path={'/'} component={HomePage} />
               <Route exact name="productDetail" path={'/products/:id'} component={ProductDetailPage} />

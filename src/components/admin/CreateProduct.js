@@ -16,7 +16,8 @@ class CreateProduct extends Component {
     Color:'',
     Region:'',
     Season:'',
-    Image:''
+    Image:'',
+    CategoryId:''
 
   }
   handleChange = (e) => {
@@ -42,7 +43,8 @@ class CreateProduct extends Component {
         Color: this.state.Color,
         Region: this.state.Region,
         Season: this.state.Season,
-        Image: this.state.Image
+        Image: this.state.Image,
+        CategoryId: this.state.CategoryId
 
   })
 })
@@ -96,15 +98,17 @@ class CreateProduct extends Component {
             <input type="text" id='Image' onChange={this.handleChange} />
           </div>
           <div className="input-field">
+            <label htmlFor="CategoryId">Product CategoryId</label>
+            <input type="text" id='CategoryId' onChange={this.handleChange} />
+          </div>
+          <div className="input-field">
             <button className="btn pink lighten-1 z-depth-0">Create</button>
           </div>
         </form>
-        <Button basic compact secondary as={NavLink} to='/'>
-            <p>Home</p>
-        </Button>
+        
       </div>
       </Container>
-      <Footer />
+
   </div>
       
     )

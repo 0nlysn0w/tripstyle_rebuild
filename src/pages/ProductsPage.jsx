@@ -3,6 +3,7 @@ import { Grid, Container } from 'semantic-ui-react'
 
 import ProductGrid from '../components/ProductGrid'
 import FilterSection from '../components/filters/FilterSection'
+import TopHeader from '../components/Header';
 
 class ProductsPage extends Component {
 	constructor(props) {
@@ -45,6 +46,8 @@ class ProductsPage extends Component {
 
 	render() {
 		return (
+			<div>
+			<TopHeader/>
 			<Container>
 				<Grid>
 					<Grid.Column width={3}>
@@ -59,7 +62,7 @@ class ProductsPage extends Component {
 
 				</Grid>
 			</Container>
-
+			</div>
 		)
 	}
 

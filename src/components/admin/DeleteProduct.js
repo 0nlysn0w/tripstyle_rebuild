@@ -41,7 +41,7 @@ class DeleteProduct extends Component {
         </Button>
       </div>
       </Container>
-      <Footer />
+     
   </div>
     )
   }

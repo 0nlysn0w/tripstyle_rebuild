@@ -36,6 +36,11 @@ export default class TopHeader extends Component {
                     <h1>Delete Product</h1>
                 </Button>
             </MenuItem>
+            <MenuItem>
+                <Button basic compact secondary as={NavLink} to='/admin/delete'>
+                    <h1>statistics WebShop</h1>
+                </Button>
+            </MenuItem>
             <MenuItem position='right'>
                 <SearchExampleStandard></SearchExampleStandard>
             </MenuItem>

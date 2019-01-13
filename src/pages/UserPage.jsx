@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Form, Divider } from 'semantic-ui-react'
 import UserPurchases from '../components/user/UserPurchases'
+import TopHeader from '../components/admin/AdminTopHeader';
 
 class UserPage extends Component {
 	constructor(props) {
@@ -63,6 +64,7 @@ class UserPage extends Component {
 			console.log('this.state.user', this.state.user)
 			return (
 				<div>
+					<TopHeader/>
 					<Grid centered columns={2}>
 						<Grid.Column>
 							<Container>

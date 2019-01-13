@@ -8,9 +8,6 @@ class AdminProductPage extends Component {
   displayName = AdminProductPage.name
   state = {
   }
-  handleChange = () => {
-    console.log(this.props)
-    }
   componentDidMount(){
     let product = this.props.match.params.productid;
     console.log(this.props.match.params.productid)
@@ -42,7 +39,7 @@ class AdminProductPage extends Component {
     event.preventDefault();
 
 
-    axios.put('https://localhost:5001/api/product/1', {
+    axios.put('https://localhost:5001/api/product/'+this.state.product_ProductId, {
         name:   this.state.product_name,
         price:  this.state.product_price,
         image:  {url: this.state.product_image},

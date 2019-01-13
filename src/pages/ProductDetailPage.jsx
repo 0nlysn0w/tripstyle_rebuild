@@ -38,13 +38,12 @@ class ProductDetailPage extends Component {
 		})
 	}
 	
-	handleChange() {
-		//cookie.set('ShoppingCart', 'huts')
-		let c = cookie.get('ShoppingCart') || "[]";
+	handleAddToCart() {
+		let c = cookie.get('cart') || "[]";
 		console.log('c', c)
 		let cart = JSON.parse(c)
-		cart.push(this.state.product)
-		cookie.set('ShoppingCart', JSON.stringify(cart))
+		cart.push(this.state.product.productId)
+		cookie.set('cart', JSON.stringify(cart))
 		console.log('cart', cart)
 	}
 	
@@ -79,7 +78,7 @@ class ProductDetailPage extends Component {
 										<Header size='huge'> {this.state.product.size} </Header>
 									</Container>
 									<Divider hidden />
-									<Button onClick={this.handleChange.bind(this)} color='green' size='massive' icon='shopping cart' fluid>
+									<Button onClick={this.handleAddToCart.bind(this)} color='green' size='massive' icon='shopping cart' fluid>
 									</Button>
 								</Container>
 							</GridColumn>

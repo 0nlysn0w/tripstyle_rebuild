@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Segment, Step, Icon, Button, List, Grid, Divider, Container } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { userActions } from '../redux/actions'
 
 import * as cookie from '../helpers/cookie.js';
 class OrderConfirmation extends Component {
@@ -7,6 +9,11 @@ class OrderConfirmation extends Component {
         super(props);
         this.state = {
             products: []
+        }
+
+        let user = JSON.parse(localStorage.getItem("user"));
+        if (user) {
+            this.props.dispatch(userActions.remember(user));
         }
     }
 
@@ -27,7 +34,7 @@ class OrderConfirmation extends Component {
             PurchaseLines.push(line);
         })
 
-        console.log('PurchaseLines', PurchaseLines)
+        console.log('this.props.user.userId', this.props.user.userId)
 
         fetch('https://localhost:5001/api/purchase', {
             method: 'POST',
@@ -37,7 +44,7 @@ class OrderConfirmation extends Component {
             },
             body: JSON.stringify({
                 IsConfirmed: true,
-                UserId: 3,
+                UserId: this.props.user.userId,
                 PurchaseLines: PurchaseLines
 
             })
@@ -259,11 +266,10 @@ class OrderConfirmation extends Component {
     }
 }
 
-// const mapStateToProps = (state) => {
-//     return {
-//         products: state.ItemCart.products
-//     }
-// }
-export default
-    // connect(mapStateToProps)
-    OrderConfirmation;
+const mapStateToProps = state => {
+    return {
+        user: state.authentication.user
+    }
+}
+
+export default connect(mapStateToProps)(OrderConfirmation);

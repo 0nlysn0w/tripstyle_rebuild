@@ -23,6 +23,7 @@ class AdminUser extends Component {
                 user_email:res.data.email,
                 user_phonenumber: res.data.phonenumber,
                 user_password: res.data.password
+
             })
         })
   }

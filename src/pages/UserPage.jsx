@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { Container, Grid, Form, Divider } from 'semantic-ui-react'
 import UserPurchases from '../components/user/UserPurchases'
+<<<<<<< HEAD
+import { history } from '../helpers';
+=======
 import TopHeader from '../components/Header';
+>>>>>>> 83b91d950fd6e75d0dca21d30228f211bf0a9372
 
 class UserPage extends Component {
 	constructor(props) {
@@ -17,14 +21,17 @@ class UserPage extends Component {
 	componentDidMount() {
 		let user = JSON.parse(localStorage.getItem("user"));
 		console.log('user', user)
+		if (user === null) {
+			return
+		}
+			this.setState({
+				userId: user.userId
+			}, () => {
+				this.fetchUser(this.state.userId)
+				this.fetchPurchases(this.state.userId)
+			})
+		}
 
-		this.setState({
-			userId: user.userId
-		}, () => {
-			this.fetchUser(this.state.userId)
-			this.fetchPurchases(this.state.userId)
-		})
-	}
 
 	fetchUser(userId) {
 

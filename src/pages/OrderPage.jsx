@@ -99,6 +99,7 @@ class OrderPage extends Component {
                     handleCheckboxChange={this.handleCheckboxChange}
                     handleDropdownChange={this.handleDropdownChange}
                     values={user}
+                    bank={this.state.bank}
                     // values={bank}
                 />
             case 3:

@@ -20,14 +20,21 @@ import ProjectInfo from './pages/footerpages/ProjectInfo';
 
 import { history } from './helpers/'
 
+import AdminHeader from './components/admin/AdminHeader'
+import AdminProductPage from './components/admin/AdminProductPage'
+import AdminUser from './components/admin/AdminUser'
+import AdminUserPage from './components/admin/AdminUserPage'
+import CreateProduct from './components/admin/CreateProduct';
+import DeleteProduct from './components/admin/DeleteProduct';
+import Statistics from './components/admin/statistics/Statistics';
+
 class App extends Component {
   render() {
     return (
       <Router history={history}>
         <Sidebar.Pushable>
           <SidebarPusher>
-            <Header />
-
+            
             <Switch>
               <Route exact path={'/'} component={HomePage} />
               <Route exact name="productDetail" path={'/products/:id'} component={ProductDetailPage} />
@@ -41,6 +48,13 @@ class App extends Component {
               <Route name='ourassortmentinfo' path={'/ourassortmentinfo'} component={OurAssortmentInfo} />
               <Route name='privacypolicy' path={'/privacypolicy'} component={PrivacyPolicy} />
               <Route name='projectinfo' path={'/projectinfo'} component={ProjectInfo} />
+              <Route path={'/admin/admin'} component={AdminHeader}/>
+              <Route path={'/admin/user'} component={AdminUserPage}/>
+              <Route exact path={'/admin/product/:productid'} component={AdminProductPage}/>
+              <Route exact path={'/admin/userid/:userid'} component={AdminUser}/>
+              <Route path={'/admin/create'}component={CreateProduct}/>
+              <Route path={'/admin/delete'}component={DeleteProduct}/>
+              <Route path={'/admin/stat'}component={Statistics}/>
             </Switch>
 
             <Footer />

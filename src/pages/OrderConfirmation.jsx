@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Segment, Step, Icon, Button, List, Grid, Divider, Container, Form } from 'semantic-ui-react';
+import { Segment, Step, Icon, Button, List, Grid, Divider, Container } from 'semantic-ui-react';
+
 import * as cookie from '../helpers/cookie.js';
-import UserPurchases from '../components/user/UserPurchases.js';
 class OrderConfirmation extends Component {
     constructor(props) {
         super(props);
@@ -64,7 +64,7 @@ class OrderConfirmation extends Component {
             })
         });
             
-        //cookie.set('cart', '[]')
+        cookie.set('cart', '[]')
         console.log(this.state);
 
     }

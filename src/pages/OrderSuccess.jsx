@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Segment, Step, Icon, Header, Button, Grid, Container, Divider } from 'semantic-ui-react';
-// import TopHeader from './components/Header';
-// import Footer from '.components/Footer';
+import { Segment, Step, Icon, Header, Grid, Container, Divider } from 'semantic-ui-react';
 
 class OrderSuccess extends Component {
     render() {

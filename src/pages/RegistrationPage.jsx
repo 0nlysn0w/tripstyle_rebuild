@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Container, Grid, Form, Divider } from 'semantic-ui-react'
 import { history } from '../helpers';
+import TopHeader from '../components/Header';
 
 class RegistrationPage extends Component {
     constructor (props) {
@@ -63,6 +64,7 @@ class RegistrationPage extends Component {
 
             return (
                 <div>
+                    <TopHeader/>
                     <Grid centered columns={2}>
                         <Grid.Column>
                             <Container>

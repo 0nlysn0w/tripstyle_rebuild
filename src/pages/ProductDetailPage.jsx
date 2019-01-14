@@ -3,6 +3,7 @@ import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button } 
 import * as cookie from '../helpers/cookie.js'
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions'
+import TopHeader from '../components/Header';
 
 class ProductDetailPage extends Component {
 	constructor(props) {
@@ -98,8 +99,10 @@ class ProductDetailPage extends Component {
 		if (this.state.product.stock) {
 			OutOfStock = true
 		}
+		
 		return (
 			<React.Fragment>
+				<TopHeader/>
 				<Container>
 					<Grid>
 						<GridRow>

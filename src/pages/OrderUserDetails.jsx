@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { Radio, Segment, Step, Icon, Form, Button, Grid, Divider, Container, Checkbox } from 'semantic-ui-react';
-import OrderPage from './OrderPage';
-// import TopHeader from './components/Header';
-// import Footer from './components/Footer';  
+import { Segment, Step, Icon, Form, Button, Grid, Divider, Container } from 'semantic-ui-react';
+
 
 class OrderUserDetails extends Component {
 

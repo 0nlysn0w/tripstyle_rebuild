@@ -13,7 +13,7 @@ class OrderPersonalDetails extends Component {
     }
 
     render() {
-        const { values } = this.props
+        console.log('this.props.bank', this.props.bank)
         return (
             <div>
                 {/* <TopHeader /> */}
@@ -70,7 +70,7 @@ class OrderPersonalDetails extends Component {
                                 </Form.Field>
                             </Segment>
                             <Button onClick={this.back}>Back</Button>
-                            <Button onClick={this.saveAndContinue}>Confirm</Button>
+                            <Button disabled={this.props.bank === ''} onClick={this.saveAndContinue}>Confirm</Button>
                         </Container>
                     </Grid.Column>
                 </Grid>

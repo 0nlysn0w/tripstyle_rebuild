@@ -21,7 +21,8 @@ class AdminUser extends Component {
                 user_lname: res.data.lastname,
                 user_gender: res.data.gender,
                 user_email:res.data.email,
-                user_phonenumber: res.data.phonenumber
+                user_phonenumber: res.data.phonenumber,
+                user_password: res.data.password
             })
         })
   }
@@ -40,7 +41,8 @@ class AdminUser extends Component {
             lastname:  this.state.user_lname,
             email:  this.state.user_email,
             gender:   this.state.user_gender,
-            phonenumber:   this.state.user_phonenumber
+            phonenumber:   this.state.user_phonenumber,
+            password: this.state.user_password
     
           })
           .then(response => {
@@ -53,6 +55,10 @@ class AdminUser extends Component {
 
 
   render() {
+    var password_confirmed = false
+    if (this.state.user_fname && this.state.user_lname && this.state.user_email && this.state.user_gender &&  (this.state.user_phonenumber != '')) {
+        password_confirmed = true
+    }
     return ( 
       <div>
  <TopHeader />
@@ -68,7 +74,7 @@ class AdminUser extends Component {
                              <Header size='huge'>{this.state.user_email}</Header>
                              <Divider hidden/>
                              <Divider hidden />
-                             <Button onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit
+                             <Button disabled={!password_confirmed} onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit
                              </Button>
                          </Container>
                      </GridColumn>
@@ -84,6 +90,7 @@ class AdminUser extends Component {
              <Container> Gender: "{this.state.user_gender}"      EDIT: <input type="text" id='user_gender'  value={this.state.user_gender} onChange={this.handleChange} /></Container>
              <Container> Email: "{this.state.user_email}"      EDIT: <input type="text" id='user_email'  value={this.state.user_email} onChange={this.handleChange} /></Container>
              <Container> Phonenumber: "{this.state.user_phonenumber}"     EDIT: <input type="text" id='user_phonenumber' onChange={this.handleChange}  value={this.state.user_phonenumber} /></Container>
+             <Container> Password: "{this.state.user_phonenumber}"     EDIT: <input type="password" id='user_password' onChange={this.handleChange}  value={this.state.user_password} /></Container>
          </Container>
          <Divider hidden />
       </div>

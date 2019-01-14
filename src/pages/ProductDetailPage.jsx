@@ -53,6 +53,7 @@ class ProductDetailPage extends Component {
 		if (this.state.isLoading) {
 			return <div>Loading...</div>;
 		}
+		
 		return (
 			<React.Fragment>
 				<TopHeader/>

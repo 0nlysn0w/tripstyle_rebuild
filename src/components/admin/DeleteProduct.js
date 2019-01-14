@@ -21,24 +21,26 @@ class DeleteProduct extends Component {
       })
 }
   render() {
+    var password_confirmed = false
+    if ((this.state.ProductId != '')) {
+        password_confirmed = true
+    }
     return (
       <div>
       <TopHeader />
       <Container>
       <div className="container">
         <form className="white" onSubmit={this.handleSubmit}>
-          <h5 className="grey-text text-darken-3">Create new Product</h5>
+          <h5 className="grey-text text-darken-3">Delete a Product</h5>
           <div className="input-field">
             <label htmlFor="ProductId">ProductId</label>
             <input type="text" id='ProductId' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Delete</button>
+            <button disabled={!password_confirmed} className="btn pink lighten-1 z-depth-0">Delete</button>
           </div>
         </form>
-        <Button basic compact secondary as={NavLink} to='/'>
-            <p>Home</p>
-        </Button>
+
       </div>
       </Container>
      

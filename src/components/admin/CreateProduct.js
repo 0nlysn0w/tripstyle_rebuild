@@ -50,6 +50,11 @@ class CreateProduct extends Component {
 })
   }
   render() {
+    
+    var password_confirmed = false
+    if (this.state.Name && this.state.Make && this.state.Price && this.state.Stock && this.state.Size && this.state.Color && this.state.Region && this.state.Season && this.state.CategoryId && (this.state.Image != '')) {
+        password_confirmed = true
+    }
     return (
       <div>
       <TopHeader />
@@ -102,7 +107,7 @@ class CreateProduct extends Component {
             <input type="text" id='CategoryId' onChange={this.handleChange} />
           </div>
           <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Create</button>
+            <button disabled={!password_confirmed} className="btn pink lighten-1 z-depth-0">Create</button>
           </div>
         </form>
         

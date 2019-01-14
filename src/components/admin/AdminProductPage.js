@@ -25,7 +25,7 @@ class AdminProductPage extends Component {
                 product_region: res.data.region,
                 product_season: res.data.season,
                 product_stock: res.data.stock,
-                product_category: 'Doesnt work'
+                product_category: res.data.categoryId
             })
         })
   }
@@ -42,14 +42,14 @@ class AdminProductPage extends Component {
     axios.put('https://localhost:5001/api/product/'+this.state.product_ProductId, {
         name:   this.state.product_name,
         price:  this.state.product_price,
-        image:  {url: this.state.product_image},
+        image: this.state.product_image,
         size:   this.state.product_size,
         make:   this.state.product_make,
         color:  this.state.product_color,
         region: this.state.product_region,
         season: this.state.product_season,
-        product_stock: this.state.product_stock,
-        product_category: 'Doesnt work'
+        stock: this.state.product_stock,
+        categoryid: this.state.product_category
       })
       .then(response => {
         console.log(response.status);
@@ -61,6 +61,11 @@ class AdminProductPage extends Component {
 
 
   render() {
+    var password_confirmed = false
+    console.log(this.state)
+    if (this.state.product_name && this.state.product_price && this.state.product_image && this.state.product_size && this.state.product_make && this.state.product_color && this.state.product_region && this.state.product_season &&( this.state.product_category != '')) {
+        password_confirmed = true
+    }
     return ( 
       <div>
         <TopHeader />
@@ -89,7 +94,7 @@ class AdminProductPage extends Component {
                                 <Header size='huge'> {this.state.product_size} </Header>
                             </Container>
                             <Divider hidden />
-                            <Button onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit
+                            <Button disabled={!password_confirmed} onClick={this.handleSubmit} color='green' size='massive'  fluid>Submit
                             </Button>
                         </Container>
                     </GridColumn>
@@ -99,14 +104,14 @@ class AdminProductPage extends Component {
         <Divider hidden/>
         <Divider horizontal>Product information</Divider>
         <Container textAlign='center'>
-            <Container> Name: "{this.state.product_name}"       EDIT: <input type="text" id='product_name' onChange={this.handleChange} /></Container>
-            <Container> Price: "{this.state.product_price}"     EDIT: <input type="text" id='product_price' onChange={this.handleChange} /></Container>
-            <Container>Fabric: "{this.state.product_make}"      EDIT: <input type="text" id='product_make' onChange={this.handleChange} /></Container>
-            <Container> Color: "{this.state.product_color}"     EDIT: <input type="text" id='product_color' onChange={this.handleChange} /></Container>
-            <Container> Region: "{this.state.product_region}"   EDIT: <input type="text" id='product_region' onChange={this.handleChange} /></Container>
-            <Container>Season: "{this.state.product_season}"    EDIT: <input type="text" id='product_season' onChange={this.handleChange} /></Container>
-            {/* <Container> Category: "{this.state.product_category}" EDIT: <input type="text" id='product_name' onChange={this.handleChange} /></Container> */}
-            <Container> Image: "{this.state.product_image}" EDIT: <input type="text" id='product_image' onChange={this.handleChange} /></Container>
+            <Container> Name: "{this.state.product_name}"       EDIT: <input type="text" id='product_name' value={this.state.product_name} onChange={this.handleChange} /></Container>
+            <Container> Price: "{this.state.product_price}"     EDIT: <input type="text" id='product_price' value={this.state.product_price} onChange={this.handleChange} /></Container>
+            <Container>Fabric: "{this.state.product_make}"      EDIT: <input type="text" id='product_make' value={this.state.product_make}  onChange={this.handleChange} /></Container>
+            <Container> Color: "{this.state.product_color}"     EDIT: <input type="text" id='product_color' value={this.state.product_color}  onChange={this.handleChange} /></Container>
+            <Container> Region: "{this.state.product_region}"   EDIT: <input type="text" id='product_region' value={this.state.product_region}  onChange={this.handleChange} /></Container>
+            <Container>Season: "{this.state.product_season}"    EDIT: <input type="text" id='product_season' value={this.state.product_season}  onChange={this.handleChange} /></Container>
+            <Container> CategoryId: "{this.state.product_category}" EDIT: <input type="text" id='product_category' value={this.state.product_category} onChange={this.handleChange} /></Container>
+            <Container> Image: "{this.state.product_image}" EDIT: <input type="text" id='product_image'  value={this.state.product_image} onChange={this.handleChange} /></Container>
         </Container>
         <Divider hidden />
         <Footer />

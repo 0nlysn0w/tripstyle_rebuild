@@ -38,7 +38,7 @@ export default class TopHeader extends Component {
             </MenuItem>
             <MenuItem>
                 <Button basic compact secondary as={NavLink} to='/admin/stat'>
-                    <h1>statistics WebShop</h1>
+                    <h1>Statistics WebShop</h1>
                 </Button>
             </MenuItem>
             <MenuItem position='right'>

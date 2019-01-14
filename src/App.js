@@ -21,6 +21,7 @@ import AdminUserPage from './components/admin/AdminUserPage'
 import CreateProduct from './components/admin/CreateProduct';
 import DeleteProduct from './components/admin/DeleteProduct';
 import Statistics from './components/admin/statistics/Statistics';
+
 class App extends Component {
   render() {
     return (

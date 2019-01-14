@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Image, Divider, Header } from 'semantic-ui-react'
 import logininfo from '../../images/logininfo.png'
+import TopHeader from '../../components/Header'
 
 class LoginInfo extends Component {
 
         render() {
             return (
                 <div>
+                    <TopHeader />
                     <Divider hidden />
                     <Divider hidden />
                     <Container textAlign='center'>

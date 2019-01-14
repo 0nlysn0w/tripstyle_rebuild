@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Image, Divider, Header, List } from 'semantic-ui-react'
+import TopHeader from '../../components/Header'
 
 class ProjectInfo extends Component {
 
     render() {
         return (
             <div>
+                    <TopHeader />
+
                 <Divider hidden />
                 <Divider hidden />
                 <Container textAlign='center'>

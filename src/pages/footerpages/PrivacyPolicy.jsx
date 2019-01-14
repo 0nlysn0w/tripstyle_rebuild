@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Image, Divider, Header } from 'semantic-ui-react'
+import TopHeader from '../../components/Header'
 
 class PrivacyPolicy extends Component {
 
     render() {
         return (
             <div>
+                    <TopHeader />
+
                 <Divider hidden />
                 <Container>
                     <h1>Privacy Policy</h1>

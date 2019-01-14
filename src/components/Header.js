@@ -5,6 +5,7 @@ import SearchBar from './SearchBar'
 import ShoppingCart from './ShoppingCart'
 import { connect } from 'react-redux';
 import { userActions } from '../redux/actions'
+import FavoritePopup from './user/FavoritePopup'
 
 class Header extends Component {
     constructor(props) {
@@ -37,7 +38,7 @@ class Header extends Component {
                 <MenuItem className="Login" position='right'>
                     {this.props.user ?
                     <React.Fragment>
-
+                        <FavoritePopup user={this.props.user.userId} />
                         <Button as={NavLink} to='/Login'>Logout</Button>
 
                         <Button color='green' as={NavLink} to='/user'>{this.props.user.firstname}</Button>

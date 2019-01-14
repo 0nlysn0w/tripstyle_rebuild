@@ -1,18 +1,27 @@
 import React, { Component } from 'react';
 import { Container, Image, Grid, GridRow, GridColumn, Divider, Header, Button } from 'semantic-ui-react';
 import * as cookie from '../helpers/cookie.js'
+import { connect } from 'react-redux';
+import { userActions } from '../redux/actions'
 
 class ProductDetailPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			product: '',
-			isLoading: true
+			isLoading: true,
+			isFavorite: false
+		}
+
+		let user = JSON.parse(localStorage.getItem("user"));
+		if (user) {
+			this.props.dispatch(userActions.remember(user));
 		}
 	}
 
 	componentDidMount() {
 		this.fetchProduct()
+		this.checkFavorite()
 	}
 
 	componentDidUpdate() {
@@ -21,32 +30,65 @@ class ProductDetailPage extends Component {
 		}
 	}
 
+	componentWillReceiveProps() {
+		this.fetchProduct()
+	}
+
+	checkFavorite() {
+		if (this.props.user === undefined) {
+			return
+		}
+		let url = 'https://localhost:5001/api/favorite/check?productId=' + this.props.match.params.id + '&userId=' + this.props.user.userId
+		console.log(url)
+		fetch(url)
+			.then(res => {
+				if (res.ok) {
+					this.setState({ isFavorite: true })
+				}
+			})
+
+	}
+
 	fetchProduct() {
 		this.setState({ selectedId: this.props.match.params.id })
-		console.log('this.props.match.params.id', this.props.match.params.id)
 		let url = 'https://localhost:5001/api/product/' + this.props.match.params.id
 		console.log('url', url)
 		fetch(url)
-		.then(res => res.json())
-		.then(json => {
-			this.setState({
-				isLoading: false,
-				product: json,
-				productId: json.productId
+			.then(res => res.json())
+			.then(json => {
+				this.setState({
+					isLoading: false,
+					product: json,
+					productId: json.productId
+				})
 			})
-			console.log('this.state', this.state)
-		})
 	}
-	
+
 	handleAddToCart() {
 		let c = cookie.get('cart') || "[]";
-		console.log('c', c)
 		let cart = JSON.parse(c)
 		cart.push(this.state.product.productId)
 		cookie.set('cart', JSON.stringify(cart))
-		console.log('cart', cart)
 	}
-	
+
+	handleFavorite(productId) {
+		this.setState({
+			isFavorite: true
+		})
+		fetch('https://localhost:5001/api/favorite', {
+			method: 'POST',
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				productId: productId,
+				userId: this.props.user.userId
+			})
+
+		})
+	}
+
 	render() {
 		if (this.state.isLoading) {
 			return <div>Loading...</div>;
@@ -83,11 +125,15 @@ class ProductDetailPage extends Component {
 									</Container>
 									<Divider hidden />
 
-									<Button onClick={this.handleAddToCart.bind(this)} color='green' size='massive' icon='shopping cart' fluid disabled={!OutOfStock}>
-									</Button>
-										<Header hidden={OutOfStock}>
-											Out of Stock
-										</Header>
+									<Button onClick={this.handleAddToCart.bind(this)} color='green' size='massive' icon='shopping cart' fluid disabled={!OutOfStock} />
+									<Header hidden={OutOfStock}>
+										Out of Stock
+									</Header>
+									{this.props.user ?
+										<Button onClick={() => this.handleFavorite(this.state.product.productId)} disabled={this.state.isFavorite} icon='heart' size='big' color='red' />
+									:
+										null	
+									}
 								</Container>
 							</GridColumn>
 						</GridRow>
@@ -109,4 +155,12 @@ class ProductDetailPage extends Component {
 		);
 	}
 }
-export default ProductDetailPage;
+
+
+const mapStateToProps = state => {
+	return {
+		user: state.authentication.user
+	}
+}
+
+export default connect(mapStateToProps)(ProductDetailPage);

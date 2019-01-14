@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Container } from 'semantic-ui-react'
+import { Button, Form, Container, Divider, Header } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { userActions, alertActions } from '../redux/actions';
@@ -56,6 +56,8 @@ class LoginForm extends Component {
 
 		return (
 			<Container>
+				<Divider hidden />
+				<Header size='huge'>Login</Header>
 				{alert.message &&
 					<div className={`alert ${alert.type}`}>{alert.message}</div>
 				}
@@ -83,6 +85,29 @@ class LoginForm extends Component {
 
 					<NavLink to='/register'>Don't have an account yet? register here.</NavLink>
 				</Form>
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
+				<Divider hidden />
 			</Container>
 		)
 	}

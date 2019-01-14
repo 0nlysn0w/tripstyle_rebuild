@@ -13,7 +13,10 @@ import LoginForm from './components/LoginForm'
 import OrderPage from './pages/OrderPage'
 import RegistrationPage from './pages/RegistrationPage'
 import Registered from './pages/Registered'
-
+import LoginInfo from './pages/footerpages/LoginInfo';
+import OurAssortmentInfo from './pages/footerpages/OurAssortmentInfo';
+import PrivacyPolicy from './pages/footerpages/PrivacyPolicy';
+import ProjectInfo from './pages/footerpages/ProjectInfo';
 
 import { history } from './helpers/'
 
@@ -34,6 +37,10 @@ class App extends Component {
               <Route name='user' path={'/user'} component={UserPage} />
               <Route name='register' path={'/register'} component={RegistrationPage} />
               <Route name='registered' path={'/registered'} component={Registered} />
+              <Route name='logininfo' path={'/logininfo'} component={LoginInfo} />
+              <Route name='ourassortmentinfo' path={'/ourassortmentinfo'} component={OurAssortmentInfo} />
+              <Route name='privacypolicy' path={'/privacypolicy'} component={PrivacyPolicy} />
+              <Route name='projectinfo' path={'/projectinfo'} component={ProjectInfo} />
             </Switch>
 
             <Footer />

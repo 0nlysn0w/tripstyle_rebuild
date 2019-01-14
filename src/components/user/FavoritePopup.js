@@ -17,19 +17,13 @@ class FavoritePopup extends Component {
     componentDidMount() {
         this.fetchFavorites()
     }
-    
-    componentDidUpdate() {
-        // Infinite loop
-        this.fetchFavorites()
-    }
 
     deleteFavorite(productId) {
         fetch('https://localhost:5001/api/favorite/' + productId, {
             method: 'DELETE'     
-        }, () => {
-            console.log('deletecallback')
-            this.fetchFavorites()
         })
+        console.log('after fetch')
+        window.location.reload();
     }
 
     fetchFavorites() {
@@ -57,7 +51,9 @@ class FavoritePopup extends Component {
                                 <Table.Cell><NavLink to={`../products/${product.product.productId}`}>{product.product.name}</NavLink></Table.Cell>
                                 <Table.Cell><NavLink to={`../products/${product.product.productId}`}>{product.product.make}</NavLink></Table.Cell>
                                 <Table.Cell>€{product.product.price}</Table.Cell>
-                                <Table.Cell><Button basic onClick={() => this.deleteFavorite(product.product.productId)}>X</Button></Table.Cell>
+                                <Table.Cell><Button basic onClick={() => {
+                                        this.deleteFavorite(product.product.productId)}
+                                    }>X</Button></Table.Cell>
                             </Table.Row>
                         ))}
                     </Table.Body>

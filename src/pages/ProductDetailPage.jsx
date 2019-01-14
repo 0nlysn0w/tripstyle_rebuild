@@ -87,6 +87,7 @@ class ProductDetailPage extends Component {
 			})
 
 		})
+        window.location.reload();
 	}
 
 	render() {

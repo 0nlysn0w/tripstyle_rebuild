@@ -64,7 +64,7 @@ class OrderConfirmation extends Component {
             })
         });
             
-        //cookie.set('cart', '[]')
+        cookie.set('cart', '[]')
         console.log(this.state);
 
     }

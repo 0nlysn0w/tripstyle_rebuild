@@ -26,6 +26,12 @@ class LoginForm extends Component {
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
+	LoginAdmin(){
+		if (this.state.email === 'admin' && this.state.password === 'admin'){
+			window.location = "http://localhost:3000/admin/admin";
+			console.log('admin')
+		}
+	}
 	handleChange(e) {
 		const { name, value } = e.target;
 		this.setState({ [name]: value });
@@ -34,7 +40,7 @@ class LoginForm extends Component {
 	handleSubmit(e) {
 		console.log(this.state);
 		e.preventDefault();
-
+		this.LoginAdmin();
 		this.setState({ submitted: true });
 		const { email, password } = this.state;
 		const { dispatch } = this.props;

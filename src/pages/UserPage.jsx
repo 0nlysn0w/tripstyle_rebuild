@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Form, Divider } from 'semantic-ui-react'
 import UserPurchases from '../components/user/UserPurchases'
+import { history } from '../helpers';
 
 class UserPage extends Component {
 	constructor(props) {
@@ -16,14 +17,17 @@ class UserPage extends Component {
 	componentDidMount() {
 		let user = JSON.parse(localStorage.getItem("user"));
 		console.log('user', user)
+		if (user === null) {
+			return
+		}
+			this.setState({
+				userId: user.userId
+			}, () => {
+				this.fetchUser(this.state.userId)
+				this.fetchPurchases(this.state.userId)
+			})
+		}
 
-		this.setState({
-			userId: user.userId
-		}, () => {
-			this.fetchUser(this.state.userId)
-			this.fetchPurchases(this.state.userId)
-		})
-	}
 
 	fetchUser(userId) {
 

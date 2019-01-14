@@ -18,12 +18,10 @@ const Footer = () => {
                             <List>
                                 <List.Item as={Link} to='/logininfo'> Login </List.Item>
                                 <List.Item as={Link} to='/ourassortmentinfo'> Our assortment </List.Item>
-                                <List.Item> Payment </List.Item>
                             </List>
                         </MenuItem>
                         <MenuItem>
                             <List>
-                                <List.Item> Ordering </List.Item>
                                 <List.Item as={Link} to='/projectinfo'> Project </List.Item>
                                 <List.Item as={Link} to='/privacypolicy'> Privacy Policy </List.Item>
                             </List>

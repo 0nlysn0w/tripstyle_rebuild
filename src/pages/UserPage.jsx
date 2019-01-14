@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Grid, Form, Divider } from 'semantic-ui-react'
 import UserPurchases from '../components/user/UserPurchases'
-import TopHeader from '../components/admin/AdminTopHeader';
+import TopHeader from '../components/Header';
 
 class UserPage extends Component {
 	constructor(props) {

@@ -15,6 +15,7 @@ class FavoritePopup extends Component {
     }
 
     componentDidMount() {
+        console.log('this.props', this.props.user)
         this.fetchFavorites()
     }
 
@@ -27,8 +28,9 @@ class FavoritePopup extends Component {
     }
 
     fetchFavorites() {
-        console.log('fetch')
-        fetch('https://localhost:5001/api/favorite/')
+        let url = 'https://localhost:5001/api/favorite/' + this.props.user
+        console.log('url user fav', url)
+        fetch(url)
         .then(res => res.json())
         .then(json => {
             this.setState({

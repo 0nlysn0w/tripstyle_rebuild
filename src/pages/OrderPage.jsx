@@ -3,10 +3,11 @@ import OrderUserDetails from './OrderUserDetails';
 import OrderPersonalDetails from './OrderPersonalDetails';
 import OrderConfirmation from './OrderConfirmation';
 import OrderSuccess from './OrderSuccess';
+import TopHeader from '../components/Header'
 
 class OrderPage extends Component {
     displayName = OrderPage.name
-    
+
     constructor(props) {
         super(props);
         this.state = {
@@ -83,36 +84,61 @@ class OrderPage extends Component {
         // const values = { street, houseNumber, postalCode, shipping, firstName, lastName, email, age, city, country, bank, };
         switch (step) {
             case 1:
-                return <OrderUserDetails
-                    nextStep={this.nextStep}
-                    handleChange={this.handleChange}
-                    handleCheckboxChange={this.handleCheckboxChange}
-                    handleDropdownChange={this.handleDropdownChange}
-                    values={user}
-                    // UserDetails={UserDetails}
-                />
+                return (
+                    <React.Fragment>
+
+                        <TopHeader />
+                        <OrderUserDetails
+                            nextStep={this.nextStep}
+                            handleChange={this.handleChange}
+                            handleCheckboxChange={this.handleCheckboxChange}
+                            handleDropdownChange={this.handleDropdownChange}
+                            values={user}
+                        // UserDetails={UserDetails}
+                        />
+                    </React.Fragment>
+                )
             case 2:
-                return <OrderPersonalDetails
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    handleChange={this.handleChange}
-                    handleCheckboxChange={this.handleCheckboxChange}
-                    handleDropdownChange={this.handleDropdownChange}
-                    values={user}
-                    bank={this.state.bank}
-                    // values={bank}
-                />
+                return (
+                    <React.Fragment>
+
+                        <TopHeader />
+                        <OrderPersonalDetails
+                            nextStep={this.nextStep}
+                            prevStep={this.prevStep}
+                            handleChange={this.handleChange}
+                            handleCheckboxChange={this.handleCheckboxChange}
+                            handleDropdownChange={this.handleDropdownChange}
+                            values={user}
+                            bank={this.state.bank}
+                        // values={bank}
+                        />
+                    </React.Fragment>
+
+                )
             case 3:
-                return <OrderConfirmation
-                    nextStep={this.nextStep}
-                    prevStep={this.prevStep}
-                    values={user}
-                    // values={bank}
-                />
+                return (
+                    <React.Fragment>
+
+                        <TopHeader />
+                        <OrderConfirmation
+                            nextStep={this.nextStep}
+                            prevStep={this.prevStep}
+                            values={user}
+
+                        />
+                    </React.Fragment>
+                )
             case 4:
-                return <OrderSuccess
-                    values={user} />
+                return (
+                    <React.Fragment>
+
+                        <TopHeader />
+                        <OrderSuccess
+                            values={user} />
+                    </React.Fragment>
+                )
         }
     }
-}export default OrderPage;
+} export default OrderPage;
 

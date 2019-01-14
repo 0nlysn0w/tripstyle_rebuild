@@ -44,7 +44,9 @@ class UserPage extends Component {
 	}
 
 	fetchPurchases(userId) {
-		fetch('https://localhost:5001/api/user/stats/' + userId)
+		let url = 'https://localhost:5001/api/user/stats/' + userId
+		console.log('url stats', url)
+		fetch(url)
 			.then(res => res.json())
 			.then(json => {
 				this.setState({

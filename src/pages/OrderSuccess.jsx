@@ -6,7 +6,6 @@ class OrderSuccess extends Component {
         const { values: { email } } = this.props;
         return (
             <div>
-                {/* <TopHeader /> */}
                 <Grid>
                     <Grid.Column>
                         <div>

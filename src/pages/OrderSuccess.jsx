@@ -46,7 +46,7 @@ class OrderSuccess extends Component {
                                 <Header icon>
                                     <Icon name='mail' />
                                     <h1 className="ui centered">A mail wil be sent to your email address</h1>
-                                    <h1 className="ui centered"><a href='mailto:{email}}'>{email}</a></h1>
+                                    <h1 className="ui centered"><a href=''>{email}</a></h1>
                                 </Header>
                             </Segment>
                         </Container>

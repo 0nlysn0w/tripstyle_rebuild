@@ -13,10 +13,6 @@ class OrderUserDetails extends Component {
 
     render() {
         const { values } = this.props;
-        // var next_page = false
-        //     if (this.props.firstname && this.props.lastname && this.props.email && this.props.street && this.props.PostalCode && this.props.City && this.props.Country) {
-        //         next_page = true
-        //     }
         console.log('values', values)
         return (
             <div>
@@ -69,7 +65,7 @@ class OrderUserDetails extends Component {
                                                 defaultValue={values.firstname}
                                             />
                                         </Form.Field>
-                                        <Form.Field required>
+                                        <Form.Field>
                                             <label>Last name</label>
                                             <input
                                                 placeholder='Last Name'
@@ -93,15 +89,8 @@ class OrderUserDetails extends Component {
                                                 defaultValue={values.street}
                                             />
                                         </Form.Field>
-                                        {/* <Form.Field>
-                                                <label>House number</label>
-                                                <input placeholder='House number'
-                                                    onChange={this.props.handleChange('houseNumber')}
-                                                    defaultValue={values.houseNumber}
-                                                />
-                                            </Form.Field> */}
                                         <Form.Field>
-                                            <label>postal code</label>
+                                            <label>Postal code</label>
                                             <input placeholder='Postal code'
                                                 onChange={this.props.handleChange('postalCode')}
                                                 defaultValue={values.postalCode}
@@ -122,7 +111,6 @@ class OrderUserDetails extends Component {
                                             />
                                         </Form.Field>
                                         <Button type='submit' onClick={this.saveAndContinue}>Save and continue </Button>
-                                        {/* disabled={!next_page} */}
                                     </Container>
                                 </Form>
                             </Segment>

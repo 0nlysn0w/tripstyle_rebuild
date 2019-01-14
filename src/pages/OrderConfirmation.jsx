@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 import { Segment, Step, Icon, Button, List, Grid, Divider, Container, Form } from 'semantic-ui-react';
-// import TopHeader from './components/Header';
-// import Footer from './components/Footer';
-import { connect } from 'react-redux'
-// import { OrderSteps } from './OrderSteps';
+import * as cookie from '../helpers/cookie.js';
+import UserPurchases from '../components/user/UserPurchases.js';
 class OrderConfirmation extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: []
+        }
+    }
+
     saveAndContinue = (e) => {
         e.preventDefault();
         this.props.nextStep();
 
-        console.log(this.props.products)
+        let PurchaseLines = []
+
+        this.state.products.map(product => {
+            let line = {
+                ProductId: product.productId,
+                Name: product.name,
+                Make: product.make,
+                Price: product.price,
+                Quantity: product.quantity
+            }
+            PurchaseLines.push(line);
+        })
+
+        console.log('PurchaseLines', PurchaseLines)
+
         fetch('https://localhost:5001/api/purchase', {
             method: 'POST',
             headers: {
@@ -19,25 +38,91 @@ class OrderConfirmation extends Component {
             body: JSON.stringify({
                 IsConfirmed: true,
                 UserId: 3,
-                orderDate: Date.now(),
-                PurchaseLines: [{
-                    ProductId: 1
-                    // ProductId: this.props.products[0].product_ProductId,
-                    // Quantity: 1
-                }]
+                PurchaseLines: PurchaseLines
 
             })
         })
+
+        PurchaseLines.map(PurchaseLine => {
+            let stock = ''
+            console.log('url', 'https://localhost:5001/api/product/' + PurchaseLine['ProductId'])
+            fetch('https://localhost:5001/api/product/' + PurchaseLine['ProductId'])
+                .then(res => res.json)
+                .then(json => {
+                    stock = json.stock
+                })
+            
+            fetch('https://localhost:5001/api/product/' + PurchaseLine.productId, {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    stock: stock - PurchaseLine.Quantity
+                })
+            })
+        });
+            
+        //cookie.set('cart', '[]')
+        console.log(this.state);
+
     }
 
+    componentDidMount() {
+        this.fetchCart()
+    }
+
+    fetchCart() {
+        let products = JSON.parse(cookie.get('cart'))
+        let items = this.mapCart(products);
+
+        let cart = []
+
+        items.ids.map((id, index) => {
+            fetch('https://localhost:5001/api/product/' + id)
+                .then(res => res.json())
+                .then(json => {
+                    json.quantity = items.sums[index]
+                    cart.push(json)
+                    cart.sort((a, b) => (a.name > b.name) ? 1 : -1)
+                    this.setState({
+                        products: cart
+                    })
+                })
+        })
+    }
+
+    mapCart(arr) {
+        // Count occurances
+        let prev;
+
+        let result = {
+            ids: [],
+            sums: []
+        }
+        arr.sort();
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] !== prev) {
+                result.ids.push(arr[i]);
+                result.sums.push(1);
+            } else {
+                result.sums[result.sums.length - 1]++;
+            }
+            prev = arr[i];
+        }
+        return result;
+    }
     back = (e) => {
         e.preventDefault();
         this.props.prevStep();
     }
 
     render() {
-        const { values: { street, houseNumber, postalCode, firstName, lastName, email, city, country, bank } } = this.props;
+        const { values: { street, postalCode, firstname, lastname, email, city, country } } = this.props;
 
+        console.log('this.state.products', this.state.products)
+        console.log(this.state.bank)
         return (
             <div>
                 {/* <TopHeader /> */}
@@ -83,14 +168,14 @@ class OrderConfirmation extends Component {
                                         <List.Icon name='users' />
                                         <List.Content>
                                             <List.Header as='a'>First Name</List.Header>
-                                            <List.Description>{firstName}</List.Description>
+                                            <List.Description>{firstname}</List.Description>
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
                                         <List.Icon name='users' />
                                         <List.Content>
                                             <List.Header as='a'>Last Name</List.Header>
-                                            <List.Description>{lastName}</List.Description>
+                                            <List.Description>{lastname}</List.Description>
                                         </List.Content>
                                     </List.Item>
                                     <List.Item>
@@ -113,13 +198,13 @@ class OrderConfirmation extends Component {
                                                         <List.Description>{street}</List.Description>
                                                     </List.Content>
                                                 </List.Item>
-                                                <List.Item>
+                                                {/* <List.Item>
                                                     <List.Icon name='home' />
                                                     <List.Content>
                                                         <List.Header as='a'>House number</List.Header>
                                                         <List.Description>{houseNumber}</List.Description>
                                                     </List.Content>
-                                                </List.Item>
+                                                </List.Item> */}
                                                 <List.Item>
                                                     <List.Icon name='mail square' />
                                                     <List.Content>
@@ -144,13 +229,13 @@ class OrderConfirmation extends Component {
                                             </List.List>
                                         </List.Content>
                                     </List.Item>
-                                    <List.Item>
+                                    {/* <List.Item>
                                         <List.Icon name='money' />
                                         <List.Content>
                                             <List.Header as='a'>Bank</List.Header>
                                             <List.Description>{bank}</List.Description>
                                         </List.Content>
-                                    </List.Item>
+                                    </List.Item> */}
                                 </List>
                             </Segment>
                             <Button onClick={this.back}>Back</Button>
@@ -179,6 +264,6 @@ class OrderConfirmation extends Component {
 //         products: state.ItemCart.products
 //     }
 // }
-export default 
-// connect(mapStateToProps)
-OrderConfirmation;
+export default
+    // connect(mapStateToProps)
+    OrderConfirmation;

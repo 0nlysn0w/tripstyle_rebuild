@@ -14,7 +14,8 @@ class OrderPage extends Component {
             userId: '',
             isLoaded: false,
             purchases: [],
-            step: 1
+            step: 1,
+            bank: ''
         }
     }
 
@@ -98,12 +99,14 @@ class OrderPage extends Component {
                     handleCheckboxChange={this.handleCheckboxChange}
                     handleDropdownChange={this.handleDropdownChange}
                     values={user}
+                    // values={bank}
                 />
             case 3:
                 return <OrderConfirmation
                     nextStep={this.nextStep}
                     prevStep={this.prevStep}
                     values={user}
+                    // values={bank}
                 />
             case 4:
                 return <OrderSuccess

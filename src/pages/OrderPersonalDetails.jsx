@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import { Segment, Step, Icon, Form, Button, Grid, Container, Divider, Dropdown } from 'semantic-ui-react';
-// import TopHeader from './components/Header';
-// import Footer from './components/Footer';
-// import { OrderSteps } from './OrderSteps';
 
 class OrderPersonalDetails extends Component {
     saveAndContinue = (e) => {
